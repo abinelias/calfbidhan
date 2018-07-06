@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html ng-app="calfScramble">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/" />
+    <title>Calf Scramble Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/App/Styles/animations.css" rel="stylesheet" />
+
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-route.js"></script>
+    <script src="~/Scripts/angular-animate.js"></script>
+
+    <script src="~/App/Scripts/calfScrambleApp.js"></script>
+    <script src="~/App/Scripts/mainController.js"></script>
+    <script src="~/App/Scripts/globalServices.js"></script>
+
+    <script src="~/App/Home/homeController.js"></script>
+    <script src="~/App/MonthlyExpense/expenseController.js"></script>
+    <script src="~/App/Correspondence/correspondenceController.js"></script>
+    <script src="~/App/Essays/essayController.js"></script>
+    <script src="~/App/Summary/summaryController.js"></script>
+</head>
+
+<body ng-controller="MainController" ng-cloak>
+    @{Html.RenderPartial("_Header");}
+    <h4 style="text-align:center;">
+        Calf Scramble Reporting - Welcome {{ scramblerLogIn.customerName}}
+        <button type="button" class="btn btn-default btn-primary btn-blue"
+                onclick="location.href='@Url.Action("Logout2","Home")'">
+            Log Out
+        </button>
+    </h4>
+    <div class="navbar navbar-default navbar-inverse" style="margin-top:20px; width:95%; margin-left:30px; align-content:center;">
+        <ul class="nav navbar-nav">
+            <li><a href="home">Home</a></li>
+            <li><a href="expense">Expenses</a></li>
+            <li><a href="correspondence">Correspondence</a></li>
+            <li><a href="essays">Essays and Business Plan</a></li>
+            <li><a href="summary">Summary</a></li>
+            <li ng-show="true"><a href="assignment">Assignment</a></li>
+        </ul>
+    </div>
+    <div class="container-fluid" style="width:95%;">
+        <div style="margin-left:20px;">
+            <strong>Questions: Please contact the Calf Scramble Department at rodeosupport@hlsr.com or 832-667-1138</strong>
+        </div>
+        @RenderBody()
+    </div>
+
+    <div style="margin-top:40px;">
+        @{Html.RenderPartial("_Footer");}
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

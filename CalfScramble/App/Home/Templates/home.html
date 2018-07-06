@@ -1,0 +1,65 @@
+﻿
+
+<div class="container-fluid" ng-controller="HomeController">
+    <h2>Home Page</h2>
+    <hr />
+
+    <h3>
+        Scrambler Name: {{ scramblerLogIn.customerName}} <br />
+        Scrambler Number: {{ scramblerLogIn.customerNumber}} <br />
+        Scrambler ID: {{ scramblerLogIn.customerID }}
+    </h3>
+    <br />
+
+
+    <div class="panel panel-default panel-primary">
+        <div class="panel-body">
+            <div class="row">
+                <button class="btn btn-default btn-primary" data-toggle="collapse" data-target="#scrambler">Scrambler Information</button>
+                <div id="scrambler" class="collapse in">
+                    Content comming soon .....
+                    {{home.scramblerDetails}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="panel panel-default panel-primary">
+        <div class="panel-body">
+            <div class="row">
+                <button class="btn btn-default btn-primary" data-toggle="collapse" data-target="#animal">Animal Information</button>
+                <div id="animal" class="collapse in">
+                    Content comming soon .....
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="panel panel-default panel-primary">
+        <div class="panel-body">
+            <div class="row">
+                <button class="btn btn-default btn-primary" data-toggle="collapse" data-target="#donor">Donor Information</button>
+
+                <div id="donor" class="collapse in">
+                    Content comming soon .....
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default panel-primary" >
+        <div class="panel-body">
+            <div class="row">
+                <button class="btn btn-default btn-primary" data-toggle="collapse" data-target="#showProgress">Calf Scramble Progress Show</button>
+                <div id="showProgress" class="collapse in">
+                    Content comming soon .....
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
