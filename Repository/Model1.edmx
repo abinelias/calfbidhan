@@ -1,0 +1,693 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CalfScramblerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="addresses">
+          <Key>
+            <PropertyRef Name="ADDRESS_ID" />
+          </Key>
+          <Property Name="ADDRESS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CUSTOMER_ID" Type="int" Nullable="false" />
+          <Property Name="ADDRESS1" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CITY" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="STATE" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="POSTAL" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="COUNTRY" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PHONE" Type="nvarchar" MaxLength="20" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="200" />
+          <Property Name="EMAIL_SECOND" Type="nvarchar" MaxLength="200" />
+          <Property Name="STATUS" Type="bit" />
+          <Property Name="CREATED_BY" Type="int" />
+          <Property Name="CREATION_DATE" Type="datetime" />
+          <Property Name="LAST_UPDATED_BY" Type="int" />
+          <Property Name="LAST_UPDATE_DATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="animals">
+          <Key>
+            <PropertyRef Name="ANIMAL_ID" />
+          </Key>
+          <Property Name="ANIMAL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ANIMAL_NAME" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="CUSTOMER_ID" Type="int" Nullable="false" />
+          <Property Name="DATE_OF_BIRTH" Type="date" />
+          <Property Name="BREED_TYPE" Type="nvarchar" MaxLength="40" />
+          <Property Name="DEPARTMENT" Type="nvarchar" MaxLength="40" />
+          <Property Name="REGISTRY_NO" Type="nvarchar" MaxLength="30" />
+          <Property Name="SEX" Type="nvarchar" MaxLength="30" />
+          <Property Name="ANIMAL_IDENTIFICATION" Type="nvarchar" MaxLength="240" />
+          <Property Name="COLOR" Type="nvarchar" MaxLength="40" />
+          <Property Name="HEIGHT" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="WEIGHT" Type="decimal" Precision="4" Scale="0" />
+          <Property Name="WEIGHT_CLASS" Type="nvarchar" MaxLength="40" />
+          <Property Name="NAME_OF_SIRE" Type="nvarchar" MaxLength="40" />
+          <Property Name="REGISTRY_NO_SIR" Type="nvarchar" MaxLength="30" />
+          <Property Name="NAME_OF_DAM" Type="nvarchar" MaxLength="60" />
+          <Property Name="REGISTRY_OF_DAM" Type="nvarchar" MaxLength="30" />
+          <Property Name="LOT_NUMBER" Type="int" />
+          <Property Name="ENTRY_NUMBER" Type="int" />
+          <Property Name="SELLER" Type="nvarchar" MaxLength="150" />
+          <Property Name="PURCHASE_DATE" Type="date" />
+          <Property Name="COST_OF_HEIFER" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="SHEERING_DATE_OLD" Type="date" />
+          <Property Name="SHEERING_DATE_NEW" Type="date" />
+          <Property Name="CREATED_BY" Type="int" />
+          <Property Name="CREATION_DATE" Type="datetime" />
+          <Property Name="LAST_UPDATED_BY" Type="int" />
+          <Property Name="LAST_UPDATE_DATE" Type="datetime" />
+          <Property Name="ANIMAL_TYPE" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CalfScrambler.dbo.clfs_authorization' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="clfs_authorization">
+          <Key>
+            <PropertyRef Name="CUSTOMER_ID" />
+            <PropertyRef Name="CUSTOMER_NUMBER" />
+            <PropertyRef Name="USER_NAME" />
+            <PropertyRef Name="PASSWORD" />
+            <PropertyRef Name="ROLE" />
+          </Key>
+          <Property Name="CUSTOMER_ID" Type="int" Nullable="false" />
+          <Property Name="CUSTOMER_NUMBER" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="USER_NAME" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="PASSWORD" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ROLE" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="clfs_winner_info">
+          <Key>
+            <PropertyRef Name="Line_id" />
+          </Key>
+          <Property Name="Line_id" Type="int" Nullable="false" />
+          <Property Name="SHOW_YEAR" Type="int" Nullable="false" />
+          <Property Name="EXHIBITOR_ID" Type="int" Nullable="false" />
+          <Property Name="EXHIBITOR_NUMBER" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="EXHIBITOR_NAME" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="CLFS_DONOR_ID" Type="int" Nullable="false" />
+          <Property Name="DONOR_NUMBER" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DONOR_NAME" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ANIMAL_ID" Type="int" />
+          <Property Name="REGISTRATION_PAPERS" Type="nvarchar" MaxLength="1" />
+          <Property Name="MONTHLY_REPORT1" Type="nvarchar" MaxLength="1" />
+          <Property Name="MONTHLY_REPORT2" Type="nvarchar" MaxLength="1" />
+          <Property Name="MONTHLY_REPORT3" Type="nvarchar" MaxLength="1" />
+          <Property Name="MONTHLY_REPORT4" Type="nvarchar" MaxLength="1" />
+          <Property Name="MONTHLY_REPORT5" Type="nvarchar" MaxLength="1" />
+          <Property Name="MONTHLY_REPORT6" Type="nvarchar" MaxLength="1" />
+          <Property Name="MONTHLY_REPORT7" Type="nvarchar" MaxLength="1" />
+          <Property Name="MONTHLY_REPORT8" Type="nvarchar" MaxLength="1" />
+          <Property Name="MONTHLY_REPORT9" Type="nvarchar" MaxLength="1" />
+          <Property Name="MONTHLY_REPORT10" Type="nvarchar" MaxLength="1" />
+          <Property Name="MONTHLY_REPORT11" Type="nvarchar" MaxLength="1" />
+          <Property Name="MONTHLY_REPORT12" Type="nvarchar" MaxLength="1" />
+          <Property Name="BREED_ESSAY" Type="nvarchar" MaxLength="1" />
+          <Property Name="YEAR_END_ESSAY" Type="nvarchar" MaxLength="1" />
+          <Property Name="SCRAP_BOOK" Type="nvarchar" MaxLength="1" />
+          <Property Name="ASSESSMENT_INIT" Type="nvarchar" MaxLength="1" />
+          <Property Name="LEDGER_MONTH" Type="nvarchar" MaxLength="1" />
+          <Property Name="ASSESSMENT_FINAL" Type="nvarchar" MaxLength="1" />
+          <Property Name="COMMENTS" Type="nvarchar" MaxLength="500" />
+          <Property Name="CANCEL_FLAG" Type="nvarchar" MaxLength="1" />
+          <Property Name="REG_PAPERS_RCVD_DATE" Type="datetime" />
+          <Property Name="CERT_RCVD_DATE" Type="datetime" />
+          <Property Name="SENT_TO_AP_DATE" Type="datetime" />
+          <Property Name="MAILED_DATE" Type="datetime" />
+          <Property Name="NEW_CLUB_ID" Type="int" />
+          <Property Name="NEW_CONTACT_ID" Type="int" />
+          <Property Name="BREED_REPORT" Type="varchar(max)" />
+          <Property Name="YEAR_END_REPORT" Type="varchar(max)" />
+          <Property Name="ASSESSMENT_INIT_SUBMIT_DATE" Type="datetime" />
+          <Property Name="ASSESSMENT_INIT_BLOB" Type="varbinary(max)" />
+          <Property Name="ASSESSMENT_INIT_FILE_NAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="ASSESSMENT_INIT_FILE_TYPE" Type="nvarchar" MaxLength="10" />
+          <Property Name="LEDGER_MONTH_SUBMIT_DATE" Type="datetime" />
+          <Property Name="LEDGER_MONTH_BLOB" Type="varbinary(max)" />
+          <Property Name="LEDGER_MONTH_FILE_NAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="LEDGER_MONTH_FILE_TYPE" Type="nvarchar" MaxLength="10" />
+          <Property Name="ASSESSMENT_FINAL_SUBMIT_DATE" Type="datetime" />
+          <Property Name="ASSESSMENT_FINAL_BLOB" Type="varbinary(max)" />
+          <Property Name="ASSESSMENT_FINAL_FILE_NAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="ASSESSMENT_FINAL_FILE_TYPE" Type="nvarchar" MaxLength="10" />
+          <Property Name="BREED_RPT_SUBMIT_DATE" Type="datetime" />
+          <Property Name="BREED_RPT_BLOB" Type="varbinary(max)" />
+          <Property Name="BREED_FILE_NAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="BREED_FILE_TYPE" Type="nvarchar" MaxLength="10" />
+          <Property Name="YREND_RPT_SUBMIT_DATE" Type="datetime" />
+          <Property Name="YEAR_END_RPT_BLOB" Type="varbinary(max)" />
+          <Property Name="YREND_FILE_NAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="YREND_FILE_TYPE" Type="nvarchar" MaxLength="10" />
+          <Property Name="DOCUMENT_ID_BRRPT" Type="int" />
+          <Property Name="DOCUMENT_ID_YERPT" Type="int" />
+          <Property Name="GREETER_CUST_ID" Type="int" />
+          <Property Name="CREATED_BY" Type="int" />
+          <Property Name="CREATION_DATE" Type="datetime" />
+          <Property Name="LAST_UPDATED_BY" Type="int" />
+          <Property Name="LAST_UPDATE_DATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="clfs_winner_monthly_documents">
+          <Key>
+            <PropertyRef Name="CLFS_DOC_ID" />
+          </Key>
+          <Property Name="CLFS_DOC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HEADER_ID" Type="int" Nullable="false" />
+          <Property Name="PHOTO" Type="varbinary(max)" />
+          <Property Name="PHOTO_FILE_NAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="PHOTO_FILE_TYPE" Type="nvarchar" MaxLength="30" />
+          <Property Name="PHOTO_SUBMIT_DATE" Type="datetime" />
+          <Property Name="PHOTO_END_DATE" Type="datetime" />
+          <Property Name="CORRESPONDENCE" Type="varbinary(max)" />
+          <Property Name="CORR_FILE_NAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="CORR_FILE_TYPE" Type="nvarchar" MaxLength="30" />
+          <Property Name="CORR_SUBMIT_DATE" Type="datetime" />
+          <Property Name="CORR_END_DATE" Type="datetime" />
+          <Property Name="COMMENTS" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CREATED_BY" Type="int" />
+          <Property Name="CREATION_DATE" Type="datetime" />
+          <Property Name="LAST_UPDATED_BY" Type="int" />
+          <Property Name="LAST_UPDATE_DATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="clfs_winner_monthly_expenses">
+          <Key>
+            <PropertyRef Name="LINE_ID" />
+          </Key>
+          <Property Name="LINE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HEADER_ID" Type="int" Nullable="false" />
+          <Property Name="EXPENSE_TYPE" Type="nvarchar" MaxLength="50" />
+          <Property Name="QUANTITY" Type="int" />
+          <Property Name="UNIT_COST" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="EXTENDED_AMOUNT" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="COMMENTS" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CREATED_BY" Type="int" />
+          <Property Name="CREATION_DATE" Type="datetime" />
+          <Property Name="LAST_UPDATED_BY" Type="int" />
+          <Property Name="LAST_UPDATE_DATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="clfs_winner_monthly_headers">
+          <Key>
+            <PropertyRef Name="HEADER_ID" />
+          </Key>
+          <Property Name="HEADER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SHOW_YEAR" Type="int" Nullable="false" />
+          <Property Name="EXHIBITOR_ID" Type="int" Nullable="false" />
+          <Property Name="REPORTING_MONTH" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="GREETER_CONTACTED" Type="nvarchar" MaxLength="1" />
+          <Property Name="DONOR_SUBMIT" Type="nvarchar" MaxLength="1" />
+          <Property Name="DONOR_SUBMIT_DATE" Type="datetime" />
+          <Property Name="COMMENTS" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CREATED_BY" Type="int" />
+          <Property Name="CREATION_DATE" Type="datetime" />
+          <Property Name="LAST_UPDATED_BY" Type="int" />
+          <Property Name="LAST_UPDATE_DATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="customers">
+          <Key>
+            <PropertyRef Name="CUSTOMER_ID" />
+          </Key>
+          <Property Name="CUSTOMER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CUSTOMER_NUMBER" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="FIRST_NAME" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="LAST_NAME" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" />
+          <Property Name="CREATION_DATE" Type="datetime" />
+          <Property Name="LAST_UPDATED_BY" Type="int" />
+          <Property Name="LAST_UPDATE_DATE" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="CalfScramblerModelStoreContainer">
+          <EntitySet Name="addresses" EntityType="Self.addresses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="animals" EntityType="Self.animals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clfs_winner_info" EntityType="Self.clfs_winner_info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clfs_winner_monthly_documents" EntityType="Self.clfs_winner_monthly_documents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clfs_winner_monthly_expenses" EntityType="Self.clfs_winner_monthly_expenses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clfs_winner_monthly_headers" EntityType="Self.clfs_winner_monthly_headers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customers" EntityType="Self.customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clfs_authorization" EntityType="Self.clfs_authorization" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [clfs_authorization].[CUSTOMER_ID] AS [CUSTOMER_ID], 
+    [clfs_authorization].[CUSTOMER_NUMBER] AS [CUSTOMER_NUMBER], 
+    [clfs_authorization].[USER_NAME] AS [USER_NAME], 
+    [clfs_authorization].[PASSWORD] AS [PASSWORD], 
+    [clfs_authorization].[ROLE] AS [ROLE]
+    FROM [dbo].[clfs_authorization] AS [clfs_authorization]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CalfScramblerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="address">
+          <Key>
+            <PropertyRef Name="ADDRESS_ID" />
+          </Key>
+          <Property Name="ADDRESS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" />
+          <Property Name="ADDRESS1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CITY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="STATE" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="POSTAL" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="COUNTRY" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PHONE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL_SECOND" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="STATUS" Type="Boolean" />
+          <Property Name="CREATED_BY" Type="Int32" />
+          <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+          <Property Name="LAST_UPDATED_BY" Type="Int32" />
+          <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="animal">
+          <Key>
+            <PropertyRef Name="ANIMAL_ID" />
+          </Key>
+          <Property Name="ANIMAL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ANIMAL_NAME" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" />
+          <Property Name="DATE_OF_BIRTH" Type="DateTime" Precision="0" />
+          <Property Name="BREED_TYPE" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="DEPARTMENT" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="REGISTRY_NO" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="SEX" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ANIMAL_IDENTIFICATION" Type="String" MaxLength="240" FixedLength="false" Unicode="true" />
+          <Property Name="COLOR" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="HEIGHT" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="WEIGHT" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="WEIGHT_CLASS" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="NAME_OF_SIRE" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="REGISTRY_NO_SIR" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="NAME_OF_DAM" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="REGISTRY_OF_DAM" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="LOT_NUMBER" Type="Int32" />
+          <Property Name="ENTRY_NUMBER" Type="Int32" />
+          <Property Name="SELLER" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PURCHASE_DATE" Type="DateTime" Precision="0" />
+          <Property Name="COST_OF_HEIFER" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="SHEERING_DATE_OLD" Type="DateTime" Precision="0" />
+          <Property Name="SHEERING_DATE_NEW" Type="DateTime" Precision="0" />
+          <Property Name="CREATED_BY" Type="Int32" />
+          <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+          <Property Name="LAST_UPDATED_BY" Type="Int32" />
+          <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+          <Property Name="ANIMAL_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="clfs_winner_monthly_documents">
+          <Key>
+            <PropertyRef Name="CLFS_DOC_ID" />
+          </Key>
+          <Property Name="CLFS_DOC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HEADER_ID" Type="Int32" Nullable="false" />
+          <Property Name="PHOTO" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PHOTO_FILE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PHOTO_FILE_TYPE" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PHOTO_SUBMIT_DATE" Type="DateTime" Precision="3" />
+          <Property Name="PHOTO_END_DATE" Type="DateTime" Precision="3" />
+          <Property Name="CORRESPONDENCE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CORR_FILE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CORR_FILE_TYPE" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CORR_SUBMIT_DATE" Type="DateTime" Precision="3" />
+          <Property Name="CORR_END_DATE" Type="DateTime" Precision="3" />
+          <Property Name="COMMENTS" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CREATED_BY" Type="Int32" />
+          <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+          <Property Name="LAST_UPDATED_BY" Type="Int32" />
+          <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="clfs_winner_monthly_expenses">
+          <Key>
+            <PropertyRef Name="LINE_ID" />
+          </Key>
+          <Property Name="LINE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HEADER_ID" Type="Int32" Nullable="false" />
+          <Property Name="EXPENSE_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QUANTITY" Type="Int32" />
+          <Property Name="UNIT_COST" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="EXTENDED_AMOUNT" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="COMMENTS" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CREATED_BY" Type="Int32" />
+          <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+          <Property Name="LAST_UPDATED_BY" Type="Int32" />
+          <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="clfs_winner_monthly_headers">
+          <Key>
+            <PropertyRef Name="HEADER_ID" />
+          </Key>
+          <Property Name="HEADER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SHOW_YEAR" Type="Int32" Nullable="false" />
+          <Property Name="EXHIBITOR_ID" Type="Int32" Nullable="false" />
+          <Property Name="REPORTING_MONTH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GREETER_CONTACTED" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="DONOR_SUBMIT" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="DONOR_SUBMIT_DATE" Type="DateTime" Precision="3" />
+          <Property Name="COMMENTS" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CREATED_BY" Type="Int32" />
+          <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+          <Property Name="LAST_UPDATED_BY" Type="Int32" />
+          <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="CUSTOMER_ID" />
+          </Key>
+          <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CUSTOMER_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FIRST_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LAST_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CREATED_BY" Type="Int32" />
+          <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+          <Property Name="LAST_UPDATED_BY" Type="Int32" />
+          <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="clfs_authorization">
+          <Key>
+            <PropertyRef Name="CUSTOMER_ID" />
+            <PropertyRef Name="CUSTOMER_NUMBER" />
+            <PropertyRef Name="USER_NAME" />
+            <PropertyRef Name="PASSWORD" />
+            <PropertyRef Name="ROLE" />
+          </Key>
+          <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" />
+          <Property Name="CUSTOMER_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="USER_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ROLE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="CalfScramblerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="addresses" EntityType="Self.address" />
+          <EntitySet Name="animals" EntityType="Self.animal" />
+          <EntitySet Name="clfs_winner_monthly_documents" EntityType="Self.clfs_winner_monthly_documents" />
+          <EntitySet Name="clfs_winner_monthly_expenses" EntityType="Self.clfs_winner_monthly_expenses" />
+          <EntitySet Name="clfs_winner_monthly_headers" EntityType="Self.clfs_winner_monthly_headers" />
+          <EntitySet Name="customers" EntityType="Self.customer" />
+          <EntitySet Name="clfs_authorization" EntityType="Self.clfs_authorization" />
+          <EntitySet Name="clfs_winner_info" EntityType="CalfScramblerModel.clfs_winner_info" />
+        </EntityContainer>
+        <EntityType Name="clfs_winner_info">
+          <Key>
+            <PropertyRef Name="Line_id" />
+          </Key>
+          <Property Name="Line_id" Type="Int32" Nullable="false" />
+          <Property Name="SHOW_YEAR" Type="Int32" Nullable="false" />
+          <Property Name="EXHIBITOR_ID" Type="Int32" Nullable="false" />
+          <Property Name="EXHIBITOR_NUMBER" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EXHIBITOR_NAME" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CLFS_DONOR_ID" Type="Int32" Nullable="false" />
+          <Property Name="DONOR_NUMBER" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DONOR_NAME" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ANIMAL_ID" Type="Int32" />
+          <Property Name="REGISTRATION_PAPERS" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="MONTHLY_REPORT1" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="MONTHLY_REPORT2" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="MONTHLY_REPORT3" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="MONTHLY_REPORT4" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="MONTHLY_REPORT5" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="MONTHLY_REPORT6" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="MONTHLY_REPORT7" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="MONTHLY_REPORT8" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="MONTHLY_REPORT9" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="MONTHLY_REPORT10" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="MONTHLY_REPORT11" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="MONTHLY_REPORT12" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="BREED_ESSAY" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="YEAR_END_ESSAY" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="SCRAP_BOOK" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="ASSESSMENT_INIT" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="LEDGER_MONTH" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="ASSESSMENT_FINAL" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="COMMENTS" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CANCEL_FLAG" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="REG_PAPERS_RCVD_DATE" Type="DateTime" Precision="3" />
+          <Property Name="CERT_RCVD_DATE" Type="DateTime" Precision="3" />
+          <Property Name="SENT_TO_AP_DATE" Type="DateTime" Precision="3" />
+          <Property Name="MAILED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="NEW_CLUB_ID" Type="Int32" />
+          <Property Name="NEW_CONTACT_ID" Type="Int32" />
+          <Property Name="BREED_REPORT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="YEAR_END_REPORT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ASSESSMENT_INIT_SUBMIT_DATE" Type="DateTime" Precision="3" />
+          <Property Name="ASSESSMENT_INIT_BLOB" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ASSESSMENT_INIT_FILE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ASSESSMENT_INIT_FILE_TYPE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LEDGER_MONTH_SUBMIT_DATE" Type="DateTime" Precision="3" />
+          <Property Name="LEDGER_MONTH_BLOB" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="LEDGER_MONTH_FILE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LEDGER_MONTH_FILE_TYPE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ASSESSMENT_FINAL_SUBMIT_DATE" Type="DateTime" Precision="3" />
+          <Property Name="ASSESSMENT_FINAL_BLOB" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ASSESSMENT_FINAL_FILE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ASSESSMENT_FINAL_FILE_TYPE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="BREED_RPT_SUBMIT_DATE" Type="DateTime" Precision="3" />
+          <Property Name="BREED_RPT_BLOB" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="BREED_FILE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BREED_FILE_TYPE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="YREND_RPT_SUBMIT_DATE" Type="DateTime" Precision="3" />
+          <Property Name="YEAR_END_RPT_BLOB" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="YREND_FILE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="YREND_FILE_TYPE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DOCUMENT_ID_BRRPT" Type="Int32" />
+          <Property Name="DOCUMENT_ID_YERPT" Type="Int32" />
+          <Property Name="GREETER_CUST_ID" Type="Int32" />
+          <Property Name="CREATED_BY" Type="Int32" />
+          <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+          <Property Name="LAST_UPDATED_BY" Type="Int32" />
+          <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CalfScramblerModelStoreContainer" CdmEntityContainer="CalfScramblerEntities">
+          <EntitySetMapping Name="addresses">
+            <EntityTypeMapping TypeName="CalfScramblerModel.address">
+              <MappingFragment StoreEntitySet="addresses">
+                <ScalarProperty Name="ADDRESS_ID" ColumnName="ADDRESS_ID" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="ADDRESS1" ColumnName="ADDRESS1" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+                <ScalarProperty Name="STATE" ColumnName="STATE" />
+                <ScalarProperty Name="POSTAL" ColumnName="POSTAL" />
+                <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="EMAIL_SECOND" ColumnName="EMAIL_SECOND" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+                <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+                <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="animals">
+            <EntityTypeMapping TypeName="CalfScramblerModel.animal">
+              <MappingFragment StoreEntitySet="animals">
+                <ScalarProperty Name="ANIMAL_ID" ColumnName="ANIMAL_ID" />
+                <ScalarProperty Name="ANIMAL_NAME" ColumnName="ANIMAL_NAME" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="DATE_OF_BIRTH" ColumnName="DATE_OF_BIRTH" />
+                <ScalarProperty Name="BREED_TYPE" ColumnName="BREED_TYPE" />
+                <ScalarProperty Name="DEPARTMENT" ColumnName="DEPARTMENT" />
+                <ScalarProperty Name="REGISTRY_NO" ColumnName="REGISTRY_NO" />
+                <ScalarProperty Name="SEX" ColumnName="SEX" />
+                <ScalarProperty Name="ANIMAL_IDENTIFICATION" ColumnName="ANIMAL_IDENTIFICATION" />
+                <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+                <ScalarProperty Name="HEIGHT" ColumnName="HEIGHT" />
+                <ScalarProperty Name="WEIGHT" ColumnName="WEIGHT" />
+                <ScalarProperty Name="WEIGHT_CLASS" ColumnName="WEIGHT_CLASS" />
+                <ScalarProperty Name="NAME_OF_SIRE" ColumnName="NAME_OF_SIRE" />
+                <ScalarProperty Name="REGISTRY_NO_SIR" ColumnName="REGISTRY_NO_SIR" />
+                <ScalarProperty Name="NAME_OF_DAM" ColumnName="NAME_OF_DAM" />
+                <ScalarProperty Name="REGISTRY_OF_DAM" ColumnName="REGISTRY_OF_DAM" />
+                <ScalarProperty Name="LOT_NUMBER" ColumnName="LOT_NUMBER" />
+                <ScalarProperty Name="ENTRY_NUMBER" ColumnName="ENTRY_NUMBER" />
+                <ScalarProperty Name="SELLER" ColumnName="SELLER" />
+                <ScalarProperty Name="PURCHASE_DATE" ColumnName="PURCHASE_DATE" />
+                <ScalarProperty Name="COST_OF_HEIFER" ColumnName="COST_OF_HEIFER" />
+                <ScalarProperty Name="SHEERING_DATE_OLD" ColumnName="SHEERING_DATE_OLD" />
+                <ScalarProperty Name="SHEERING_DATE_NEW" ColumnName="SHEERING_DATE_NEW" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+                <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+                <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+                <ScalarProperty Name="ANIMAL_TYPE" ColumnName="ANIMAL_TYPE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clfs_winner_monthly_documents">
+            <EntityTypeMapping TypeName="CalfScramblerModel.clfs_winner_monthly_documents">
+              <MappingFragment StoreEntitySet="clfs_winner_monthly_documents">
+                <ScalarProperty Name="CLFS_DOC_ID" ColumnName="CLFS_DOC_ID" />
+                <ScalarProperty Name="HEADER_ID" ColumnName="HEADER_ID" />
+                <ScalarProperty Name="PHOTO" ColumnName="PHOTO" />
+                <ScalarProperty Name="PHOTO_FILE_NAME" ColumnName="PHOTO_FILE_NAME" />
+                <ScalarProperty Name="PHOTO_FILE_TYPE" ColumnName="PHOTO_FILE_TYPE" />
+                <ScalarProperty Name="PHOTO_SUBMIT_DATE" ColumnName="PHOTO_SUBMIT_DATE" />
+                <ScalarProperty Name="PHOTO_END_DATE" ColumnName="PHOTO_END_DATE" />
+                <ScalarProperty Name="CORRESPONDENCE" ColumnName="CORRESPONDENCE" />
+                <ScalarProperty Name="CORR_FILE_NAME" ColumnName="CORR_FILE_NAME" />
+                <ScalarProperty Name="CORR_FILE_TYPE" ColumnName="CORR_FILE_TYPE" />
+                <ScalarProperty Name="CORR_SUBMIT_DATE" ColumnName="CORR_SUBMIT_DATE" />
+                <ScalarProperty Name="CORR_END_DATE" ColumnName="CORR_END_DATE" />
+                <ScalarProperty Name="COMMENTS" ColumnName="COMMENTS" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+                <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+                <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clfs_winner_monthly_expenses">
+            <EntityTypeMapping TypeName="CalfScramblerModel.clfs_winner_monthly_expenses">
+              <MappingFragment StoreEntitySet="clfs_winner_monthly_expenses">
+                <ScalarProperty Name="LINE_ID" ColumnName="LINE_ID" />
+                <ScalarProperty Name="HEADER_ID" ColumnName="HEADER_ID" />
+                <ScalarProperty Name="EXPENSE_TYPE" ColumnName="EXPENSE_TYPE" />
+                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+                <ScalarProperty Name="UNIT_COST" ColumnName="UNIT_COST" />
+                <ScalarProperty Name="EXTENDED_AMOUNT" ColumnName="EXTENDED_AMOUNT" />
+                <ScalarProperty Name="COMMENTS" ColumnName="COMMENTS" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+                <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+                <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clfs_winner_monthly_headers">
+            <EntityTypeMapping TypeName="CalfScramblerModel.clfs_winner_monthly_headers">
+              <MappingFragment StoreEntitySet="clfs_winner_monthly_headers">
+                <ScalarProperty Name="HEADER_ID" ColumnName="HEADER_ID" />
+                <ScalarProperty Name="SHOW_YEAR" ColumnName="SHOW_YEAR" />
+                <ScalarProperty Name="EXHIBITOR_ID" ColumnName="EXHIBITOR_ID" />
+                <ScalarProperty Name="REPORTING_MONTH" ColumnName="REPORTING_MONTH" />
+                <ScalarProperty Name="GREETER_CONTACTED" ColumnName="GREETER_CONTACTED" />
+                <ScalarProperty Name="DONOR_SUBMIT" ColumnName="DONOR_SUBMIT" />
+                <ScalarProperty Name="DONOR_SUBMIT_DATE" ColumnName="DONOR_SUBMIT_DATE" />
+                <ScalarProperty Name="COMMENTS" ColumnName="COMMENTS" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+                <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+                <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customers">
+            <EntityTypeMapping TypeName="CalfScramblerModel.customer">
+              <MappingFragment StoreEntitySet="customers">
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="CUSTOMER_NUMBER" ColumnName="CUSTOMER_NUMBER" />
+                <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+                <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+                <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clfs_authorization">
+            <EntityTypeMapping TypeName="CalfScramblerModel.clfs_authorization">
+              <MappingFragment StoreEntitySet="clfs_authorization">
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="CUSTOMER_NUMBER" ColumnName="CUSTOMER_NUMBER" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clfs_winner_info">
+            <EntityTypeMapping TypeName="CalfScramblerModel.clfs_winner_info">
+              <MappingFragment StoreEntitySet="clfs_winner_info">
+                <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+                <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+                <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="GREETER_CUST_ID" ColumnName="GREETER_CUST_ID" />
+                <ScalarProperty Name="DOCUMENT_ID_YERPT" ColumnName="DOCUMENT_ID_YERPT" />
+                <ScalarProperty Name="DOCUMENT_ID_BRRPT" ColumnName="DOCUMENT_ID_BRRPT" />
+                <ScalarProperty Name="YREND_FILE_TYPE" ColumnName="YREND_FILE_TYPE" />
+                <ScalarProperty Name="YREND_FILE_NAME" ColumnName="YREND_FILE_NAME" />
+                <ScalarProperty Name="YEAR_END_RPT_BLOB" ColumnName="YEAR_END_RPT_BLOB" />
+                <ScalarProperty Name="YREND_RPT_SUBMIT_DATE" ColumnName="YREND_RPT_SUBMIT_DATE" />
+                <ScalarProperty Name="BREED_FILE_TYPE" ColumnName="BREED_FILE_TYPE" />
+                <ScalarProperty Name="BREED_FILE_NAME" ColumnName="BREED_FILE_NAME" />
+                <ScalarProperty Name="BREED_RPT_BLOB" ColumnName="BREED_RPT_BLOB" />
+                <ScalarProperty Name="BREED_RPT_SUBMIT_DATE" ColumnName="BREED_RPT_SUBMIT_DATE" />
+                <ScalarProperty Name="ASSESSMENT_FINAL_FILE_TYPE" ColumnName="ASSESSMENT_FINAL_FILE_TYPE" />
+                <ScalarProperty Name="ASSESSMENT_FINAL_FILE_NAME" ColumnName="ASSESSMENT_FINAL_FILE_NAME" />
+                <ScalarProperty Name="ASSESSMENT_FINAL_BLOB" ColumnName="ASSESSMENT_FINAL_BLOB" />
+                <ScalarProperty Name="ASSESSMENT_FINAL_SUBMIT_DATE" ColumnName="ASSESSMENT_FINAL_SUBMIT_DATE" />
+                <ScalarProperty Name="LEDGER_MONTH_FILE_TYPE" ColumnName="LEDGER_MONTH_FILE_TYPE" />
+                <ScalarProperty Name="LEDGER_MONTH_FILE_NAME" ColumnName="LEDGER_MONTH_FILE_NAME" />
+                <ScalarProperty Name="LEDGER_MONTH_BLOB" ColumnName="LEDGER_MONTH_BLOB" />
+                <ScalarProperty Name="LEDGER_MONTH_SUBMIT_DATE" ColumnName="LEDGER_MONTH_SUBMIT_DATE" />
+                <ScalarProperty Name="ASSESSMENT_INIT_FILE_TYPE" ColumnName="ASSESSMENT_INIT_FILE_TYPE" />
+                <ScalarProperty Name="ASSESSMENT_INIT_FILE_NAME" ColumnName="ASSESSMENT_INIT_FILE_NAME" />
+                <ScalarProperty Name="ASSESSMENT_INIT_BLOB" ColumnName="ASSESSMENT_INIT_BLOB" />
+                <ScalarProperty Name="ASSESSMENT_INIT_SUBMIT_DATE" ColumnName="ASSESSMENT_INIT_SUBMIT_DATE" />
+                <ScalarProperty Name="YEAR_END_REPORT" ColumnName="YEAR_END_REPORT" />
+                <ScalarProperty Name="BREED_REPORT" ColumnName="BREED_REPORT" />
+                <ScalarProperty Name="NEW_CONTACT_ID" ColumnName="NEW_CONTACT_ID" />
+                <ScalarProperty Name="NEW_CLUB_ID" ColumnName="NEW_CLUB_ID" />
+                <ScalarProperty Name="MAILED_DATE" ColumnName="MAILED_DATE" />
+                <ScalarProperty Name="SENT_TO_AP_DATE" ColumnName="SENT_TO_AP_DATE" />
+                <ScalarProperty Name="CERT_RCVD_DATE" ColumnName="CERT_RCVD_DATE" />
+                <ScalarProperty Name="REG_PAPERS_RCVD_DATE" ColumnName="REG_PAPERS_RCVD_DATE" />
+                <ScalarProperty Name="CANCEL_FLAG" ColumnName="CANCEL_FLAG" />
+                <ScalarProperty Name="COMMENTS" ColumnName="COMMENTS" />
+                <ScalarProperty Name="ASSESSMENT_FINAL" ColumnName="ASSESSMENT_FINAL" />
+                <ScalarProperty Name="LEDGER_MONTH" ColumnName="LEDGER_MONTH" />
+                <ScalarProperty Name="ASSESSMENT_INIT" ColumnName="ASSESSMENT_INIT" />
+                <ScalarProperty Name="SCRAP_BOOK" ColumnName="SCRAP_BOOK" />
+                <ScalarProperty Name="YEAR_END_ESSAY" ColumnName="YEAR_END_ESSAY" />
+                <ScalarProperty Name="BREED_ESSAY" ColumnName="BREED_ESSAY" />
+                <ScalarProperty Name="MONTHLY_REPORT12" ColumnName="MONTHLY_REPORT12" />
+                <ScalarProperty Name="MONTHLY_REPORT11" ColumnName="MONTHLY_REPORT11" />
+                <ScalarProperty Name="MONTHLY_REPORT10" ColumnName="MONTHLY_REPORT10" />
+                <ScalarProperty Name="MONTHLY_REPORT9" ColumnName="MONTHLY_REPORT9" />
+                <ScalarProperty Name="MONTHLY_REPORT8" ColumnName="MONTHLY_REPORT8" />
+                <ScalarProperty Name="MONTHLY_REPORT7" ColumnName="MONTHLY_REPORT7" />
+                <ScalarProperty Name="MONTHLY_REPORT6" ColumnName="MONTHLY_REPORT6" />
+                <ScalarProperty Name="MONTHLY_REPORT5" ColumnName="MONTHLY_REPORT5" />
+                <ScalarProperty Name="MONTHLY_REPORT4" ColumnName="MONTHLY_REPORT4" />
+                <ScalarProperty Name="MONTHLY_REPORT3" ColumnName="MONTHLY_REPORT3" />
+                <ScalarProperty Name="MONTHLY_REPORT2" ColumnName="MONTHLY_REPORT2" />
+                <ScalarProperty Name="MONTHLY_REPORT1" ColumnName="MONTHLY_REPORT1" />
+                <ScalarProperty Name="REGISTRATION_PAPERS" ColumnName="REGISTRATION_PAPERS" />
+                <ScalarProperty Name="ANIMAL_ID" ColumnName="ANIMAL_ID" />
+                <ScalarProperty Name="DONOR_NAME" ColumnName="DONOR_NAME" />
+                <ScalarProperty Name="DONOR_NUMBER" ColumnName="DONOR_NUMBER" />
+                <ScalarProperty Name="CLFS_DONOR_ID" ColumnName="CLFS_DONOR_ID" />
+                <ScalarProperty Name="EXHIBITOR_NAME" ColumnName="EXHIBITOR_NAME" />
+                <ScalarProperty Name="EXHIBITOR_NUMBER" ColumnName="EXHIBITOR_NUMBER" />
+                <ScalarProperty Name="EXHIBITOR_ID" ColumnName="EXHIBITOR_ID" />
+                <ScalarProperty Name="SHOW_YEAR" ColumnName="SHOW_YEAR" />
+                <ScalarProperty Name="Line_id" ColumnName="Line_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

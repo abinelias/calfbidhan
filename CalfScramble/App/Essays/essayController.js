@@ -1,17 +1,43 @@
-﻿
+﻿(function () {
+    angular.module('calfScramble')
+        .controller('EssayController', EssayController);
 
-(function (app) {
-    "use strict";
+    EssayController.$inject = ['$scope', 'globalServices', '$localStorage', '$sessionStorage'];
 
-    var app = angular.module("calfScramble");
+    function EssayController($scope, globalServices, $localStorage, $sessionStorage) {
+        var vm = this;
+        vm.monthDetails;
+        vm.yearDetails;
+        vm.startDate = 11;
+        vm.endDate = 10
 
-    var EssayController = function ($scope) {
+        vm.add = add;
+        vm.downloadCoress = downloadCoress;
 
-    };
+        function add(type) {
+          //  alert(type);
+            var f = document.getElementById(type).files[0],
+                r = new FileReader();
 
-    EssayController.$inject = ["$scope"];
+            r.onloadend = function (e) {
+                var data = e.target.result;
+                globalServices.UploadEssayData(f, type).then(function (res) {
+                });
+            }
+            r.readAsBinaryString(f);
+        }
 
-    app.controller("EssayController", EssayController);
+        globalServices.getMonth().then(function (res) {
+            vm.monthDetails = res.data;
+        });
 
+        globalServices.getYear().then(function (res) {
+            vm.yearDetails = res.data;
+        });
 
-}());
+        function downloadCoress() {
+            globalServices.downloadCoress(1).then(function (res) {
+            });
+        }
+    }
+})();

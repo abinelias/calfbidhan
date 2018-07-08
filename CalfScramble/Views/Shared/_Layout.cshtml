@@ -7,13 +7,60 @@
     <title>Calf Scramble Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link href="~/App/Styles/animations.css" rel="stylesheet" />
+    <script src="https://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.8.3.js"></script>
 
-    <script src="~/Scripts/angular.js"></script>
-    <script src="~/Scripts/angular-route.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://unpkg.com/igniteui-angularjs@1.2.1/igniteui-angularjs.min.js"></script>
+    <link href="https://cdn-na.infragistics.com/igniteui/2018.1/latest/css/themes/infragistics/infragistics.theme.css" rel="stylesheet">
+    <link href="https://cdn-na.infragistics.com/igniteui/2018.1/latest/css/structure/infragistics.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+
+    <link href="~/App/Styles/animations.css" rel="stylesheet" />
     <script src="~/Scripts/angular-animate.js"></script>
 
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.min.js"></script>
+
+
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+
+    <script src="https://igniteui.github.io/help-samples/js/FileSaver.js"></script>
+    <script src="https://igniteui.github.io/help-samples/js/Blob.js"></script>
+
+    <!-- Ignite UI Required Combined JavaScript Files -->
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2017.1/latest/js/infragistics.core.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2017.1/latest/js/infragistics.lob.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2017.1/latest/js/modules/infragistics.ext_core.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2017.1/latest/js/modules/infragistics.ext_collections.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2017.1/latest/js/modules/infragistics.ext_text.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2017.1/latest/js/modules/infragistics.ext_io.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2017.1/latest/js/modules/infragistics.ext_ui.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2017.1/latest/js/modules/infragistics.documents.core_core.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2017.1/latest/js/modules/infragistics.ext_collectionsextended.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2017.1/latest/js/modules/infragistics.excel_core.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2017.1/latest/js/modules/infragistics.ext_threading.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2017.1/latest/js/modules/infragistics.ext_web.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2017.1/latest/js/modules/infragistics.xml.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2017.1/latest/js/modules/infragistics.documents.core_openxml.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2017.1/latest/js/modules/infragistics.excel_serialization_openxml.js"></script>
+    <script type="text/javascript" src="http://cdn-na.infragistics.com/igniteui/2017.1/latest/js/modules/infragistics.gridexcelexporter.js"></script>
+
+    <script src="http://cdn-na.infragistics.com/igniteui/2017.1/latest/js/extensions/igniteui-angular.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+
+
     <script src="~/App/Scripts/calfScrambleApp.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/App/Scripts/mainController.js"></script>
     <script src="~/App/Scripts/globalServices.js"></script>
 
@@ -22,6 +69,16 @@
     <script src="~/App/Correspondence/correspondenceController.js"></script>
     <script src="~/App/Essays/essayController.js"></script>
     <script src="~/App/Summary/summaryController.js"></script>
+    <style>
+        .borderless > thead > tr > th,
+        .borderless > tbody > tr > th,
+        .borderless > tfoot > tr > th,
+        .borderless > thead > tr > td,
+        .borderless > tbody > tr > td,
+        .borderless > tfoot > tr > td {
+            border-top: none;
+        }
+    </style>
 </head>
 
 <body ng-controller="MainController" ng-cloak>

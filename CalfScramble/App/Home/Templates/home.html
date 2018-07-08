@@ -17,8 +17,43 @@
             <div class="row">
                 <button class="btn btn-default btn-primary" data-toggle="collapse" data-target="#scrambler">Scrambler Information</button>
                 <div id="scrambler" class="collapse in">
-                    Content comming soon .....
-                    {{home.scramblerDetails}}
+                    <div style="text-align:center;color:cornflowerblue;margin-bottom:10px;">Scrambler Information</div>
+                    <table style="width:80%" class="table borderless">
+                        <tbody>
+                            <tr>
+                                <td style="text-align:right">Name:</td>
+                                <td><input type="text" class="form-control" ng-model="home.scramblerDetails.cutomer.FIRST_NAME" style="padding-left:20px;" /></td>
+                                <td style="text-align:right">Email:</td>
+                                <td><input ng-model="home.scramblerDetails.address.EMAIL" type="text" class="form-control" style="padding-left:20px" /></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right">Address:</td>
+                                <td><input ng-model="home.scramblerDetails.address.ADDRESS1" type="text" class="form-control" style="padding-left:20px" /></td>
+                                <td style="text-align:right">Secondary Email:</td>
+                                <td><input ng-model="home.scramblerDetails.address.EMAIL_SECOND" type="text" class="form-control" style="padding-left:20px" /></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right">City:</td>
+                                <td><input ng-model="home.scramblerDetails.address.CITY" type="text" class="form-control" style="padding-left:20px" /></td>
+                                <td style="text-align:right">Chapter:</td>
+                                <td><input ng-model="home.scramblerDetails.address.EMAIL" type="text" class="form-control" style="padding-left:20px" /></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right">State:</td>
+                                <td>
+                                    <select style="padding-left:20px;" class="form-control" ng-model="home.scramblerDetails.address.STATE" ng-options="animalType.Id as animalType.Name for animalType in home.states"></select>
+                                </td>
+                                <td style="text-align:right">CEA or AST:</td>
+                                <td><input ng-model="home.scramblerDetails.address.EMAIL" type="text" class="form-control" style="padding-left:20px" /></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right">ZIP:</td>
+                                <td><input ng-model="home.scramblerDetails.address.POSTAL" type="text" class="form-control" style="padding-left:20px" /></td>
+                                <td style="text-align:right">CEA or AST Email:</td>
+                                <td><input ng-model="home.scramblerDetails.address.EMAIL" type="text" class="form-control" style="padding-left:20px" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -30,7 +65,90 @@
             <div class="row">
                 <button class="btn btn-default btn-primary" data-toggle="collapse" data-target="#animal">Animal Information</button>
                 <div id="animal" class="collapse in">
-                    Content comming soon .....
+                    <div style="text-align:center;color:cornflowerblue;margin-bottom:10px;">Additional Information</div>
+                    <table class="table borderless" style="width:65%">
+                        <tbody>
+                            <tr>
+                                <td style="text-align:right">Animal Type:</td>
+                                <td>
+                                    <select style="padding-left:20px;" class="form-control" ng-model="home.selectedAnimalType" ng-options="animalType.Id as animalType.Name for animalType in home.animalType"></select>
+                                </td>
+                            </tr>
+                            <tr ng-if="home.selectedAnimalType == 1">
+                                <td style="text-align:right">Animal:</td>
+                                <td><input ng-model="home.scramblerDetails.address.EMAIL" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                            </tr>
+                            <tr ng-if="home.selectedAnimalType == 1">
+                                <td style="text-align:right">Registry #:</td>
+                                <td><input ng-model="home.scramblerDetails.address.EMAIL" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                            </tr>
+                            <tr ng-if="home.selectedAnimalType == 1">
+                                <td style="text-align:right">Date of Birth:</td>
+                                <td><input type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                            </tr>
+                            <tr ng-if="home.selectedAnimalType == 1">
+                                <td style="text-align:right">Name of Size:</td>
+                                <td><input type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                            </tr>
+                            <tr ng-if="home.selectedAnimalType == 1">
+                                <td style="text-align:right">Size Registry #:</td>
+                                <td><input type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                            </tr>
+                            <tr ng-if="home.selectedAnimalType == 1">
+                                <td style="text-align:right">Name of Dam:</td>
+                                <td><input type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                            </tr>
+                            <tr ng-if="home.selectedAnimalType == 1">
+                                <td style="text-align:right">Dam Registry #:</td>
+                                <td><input type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                            </tr>
+                            <tr ng-if="home.selectedAnimalType == 1">
+                                <td style="text-align:right">Breed:</td>
+                                <td>
+                                    <select style="padding-left:20px;" class="form-control" ng-model="home.selectedBreed" ng-options="breed.Id as breed.Name for breed in home.breed"></select>
+                                </td>
+                            </tr>
+                            <tr ng-if="home.selectedAnimalType == 1">
+                                <td style="text-align:right">Animal ID:</td>
+                                <td><input type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                            </tr>
+                            <tr ng-if="home.selectedAnimalType == 1">
+                                <td style="text-align:right">Seller:</td>
+                                <td><input type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                            </tr>
+                            <tr ng-if="home.selectedAnimalType == 1">
+                                <td style="text-align:right">Purchase Date:</td>
+                                <td><input type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                            </tr>
+                            <tr ng-if="home.selectedAnimalType == 1">
+                                <td style="text-align:right">Total Animal Cost:</td>
+                                <td><input type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                            </tr>
+                            <tr ng-if="home.selectedAnimalType == 2">
+                                <td style="text-align:right">Validation Tag:</td>
+                                <td><input type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                            </tr>
+                            <tr ng-if="home.selectedAnimalType == 2">
+                                <td style="text-align:right">Sellar name:</td>
+                                <td><input type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                            </tr>
+                            <tr ng-show="home.selectedAnimalType == 2">
+                                <td style="text-align:right">Purchase Date:</td>
+                                <td>
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input type='text' class="form-control" data-date-end-date="0d" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr ng-if="home.selectedAnimalType == 2">
+                                <td style="text-align:right">Cost:</td>
+                                <td><input type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -43,7 +161,19 @@
                 <button class="btn btn-default btn-primary" data-toggle="collapse" data-target="#donor">Donor Information</button>
 
                 <div id="donor" class="collapse in">
-                    Content comming soon .....
+                    <div style="text-align:center;color:cornflowerblue;margin-bottom:10px;">Donor Information</div>
+                    <table class="table borderless" style="width:65%">
+                        <tbody>
+                            <tr>
+                                <td style="text-align:right">Donor name:</td>
+                                <td><input type="text" class="form-control" style="padding-left:20px; width:200px;" /></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right">Donor Email:</td>
+                                <td><input type="text" class="form-control" style="padding-left:20px; width:200px;" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
             </div>
@@ -55,11 +185,30 @@
             <div class="row">
                 <button class="btn btn-default btn-primary" data-toggle="collapse" data-target="#showProgress">Calf Scramble Progress Show</button>
                 <div id="showProgress" class="collapse in">
-                    Content comming soon .....
+                    <div style="text-align:center;color:cornflowerblue;margin-bottom:10px;">Calf Scramble Progress Show – Month DD, YYYY</div>
+                    <table class="table borderless" style="width:65%">
+                        <tbody>
+                            <tr>
+                                <td style="text-align:right">Will you attend the Calf scrambling progress show:</td>
+                                <td><select style="padding-left:20px;" class="form-control" ng-model="home.selectedAttending" ng-options="attending.Id as attending.Name for attending in home.attending"></select></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right">T-Shirt Size:</td>
+                                <td>
+                                    <select style="padding-left:20px;" class="form-control" ng-model="home.selectedTShirtSize" ng-options="tShirtSize.Id as tShirtSize.Name for tShirtSize in home.tShirtSize"></select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 
+
+</div>
+<div>
+
+    <button class="btn btn-default btn-primary"  ng-click="home.Save()">Update</button>
 
 </div>

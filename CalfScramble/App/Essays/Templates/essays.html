@@ -9,4 +9,74 @@
         Scrambler ID: {{ scramblerLogIn.customerID }}
     </h3>
 
+    <div class="panel panel-default">
+        <div class="panel-heading" style="font-size: 15px;padding: 11px;color: cornflowerblue;">Business Plan</div>
+        <div class="panel-body">
+            <div style="color:red">Initial Assessment Deadline: Month DD HH:MM A/PM</div>
+            <div class="row" style="margin-top: 15px;">
+                <div class="col-xs-3 col-md-3 col-sm-3">
+                    <label style="float:left;color: darkgoldenrod;float: left;margin-right: 60px;">Initial Assessment:</label>
+                </div>
+                <div class="col-xs-5 col-md-5 col-sm-5">
+                    <input style="float:left" type="file" id="initass" name="initass" />
+                </div>
+                <div class="col-xs-2 col-md-2 col-sm-2">
+                    <button ng-click="essay.add('initass')" class="btn btn-success">Upload</button>
+                </div>
+            </div>
+            <div style="color:red">Monthly Ledger & Final Assessment Deadline: Month DD HH:MM A/PM</div>
+            <div class="row" style="margin-top: 15px;">
+                <div class="col-xs-3 col-md-3 col-sm-3">
+                    <label style="float:left;color: darkgoldenrod;float: left;margin-right: 60px;">Monthly Ledger:</label>
+                </div>
+                <div class="col-xs-5 col-md-5 col-sm-5">
+                    <input style="float:left" type="file" id="monledger" name="monledger" />
+                </div>
+                <div class="col-xs-2 col-md-2 col-sm-2">
+                    <button ng-click="essay.add('monledger')" class="btn btn-success">Upload</button>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 15px;">
+                <div class="col-xs-3 col-md-3 col-sm-3">
+                    <label style="float:left;color: darkgoldenrod;float: left;margin-right: 60px;">Final Assessment:</label>
+                </div>
+                <div class="col-xs-5 col-md-5 col-sm-5">
+                    <input style="float:left" type="file" id="finass" name="finass" />
+                </div>
+                <div class="col-xs-2 col-md-2 col-sm-2">
+                    <button ng-click="essay.add('finass')" class="btn btn-success">Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" style="font-size: 15px;padding: 11px;color: cornflowerblue;">Essays</div>
+        <div class="panel-body">
+            <div style="color:red">Initial Assessment Deadline: Month DD HH:MM A/PM</div>
+            <div class="row" style="margin-top: 15px;">
+                <div class="col-xs-3 col-md-3 col-sm-3">
+                    <label style="float:left;color: darkgoldenrod;float: left;margin-right: 60px;">Breed Essay:</label>
+                </div>
+                <div class="col-xs-5 col-md-5 col-sm-5">
+                    <input style="float:left" type="file" id="breedessay" name="breedessay" />
+                </div>
+                <div class="col-xs-2 col-md-2 col-sm-2">
+                    <button ng-click="essay.add('breedessay')" class="btn btn-success">Upload</button>
+                </div>
+            </div>
+            <div style="color:red">Initial Assessment Deadline: Month DD HH:MM A/PM</div>
+            <div class="row" style="margin-top: 15px;">
+                <div class="col-xs-3 col-md-3 col-sm-3">
+                    <label style="float:left;color: darkgoldenrod;float: left;margin-right: 60px;">Year End Essay:</label>
+                </div>
+                <div class="col-xs-5 col-md-5 col-sm-5">
+                    <input style="float:left" type="file" id="yearendessay" name="yearendessay" />
+                </div>
+                <div class="col-xs-2 col-md-2 col-sm-2">
+                    <button ng-click="essay.add('yearendessay')" class="btn btn-success">Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

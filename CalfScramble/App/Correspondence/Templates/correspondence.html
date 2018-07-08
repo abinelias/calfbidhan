@@ -1,8 +1,4 @@
-﻿
-
-
-
-<div class="container" ng-controller="CorrespondenceController">
+﻿<div class="container" ng-controller="CorrespondenceController">
     <h2>Correspondece Page</h2>
     <hr />
 
@@ -12,6 +8,65 @@
         Scrambler ID: {{ scramblerLogIn.customerID }}
     </h3>
 
+    <div class="panel panel-default">
+        <div class="panel-heading" style="font-size: 15px;padding: 11px;color: cornflowerblue;">May Correspondence</div>
+        <div class="panel-body">
+            <div style="margin-bottom: 2px;">
+                <b>Reporting Cycle: Enter from {{corres.startDate}} to {{corres.endDate}}</b>
+            </div>
+            <div style="font-size: 14px;">
+                <b><u>Step: 1</u></b>
+            </div>
+            <div style="font-size: 12px;">
+                Attach Monthly Report Correspondence
+            </div>
+            <div style="font-size: 12px;">
+                Must be one of the following types: doc, docx, rtf, txt, pdf
+            </div>
+            <div style="font-size: 12px;">
+                If you have a different file type. Please convert the file type to an acceptable file type before uploading
+            </div>
+            <div style="font-size: 12px;">
+                There are free file convertor available over internel
+            </div>
+            <div style="margin-top: 15px;">
+                <label style="float:left;color: darkgoldenrod;float: left;margin-right: 60px;">Correspondence</label> <input style="float:left" type="file" id="file" name="file" />
+                <button ng-click="corres.add('corres')" class="btn btn-success">Uploads</button>
+                <button ng-click="corres.downloadCoress()" class="btn btn-success">Download</button>
+
+            </div>
+            <div style="font-size: 14px;">
+                <b>A copy of this correspondence and picturewill be emailed to your donor and teacher or country agent</b>
+            </div>
+            <div style="font-size: 14px;">
+                <b><u>Step: 2</u></b>
+            </div>
+            <div style="font-size: 12px;">
+                Attach upto three photos of the month. Must be in following file types .jpg, .png, .tif, .gif or bmp
+            </div>
+            <div style="margin-top: 15px;">
+                <label style="float:left;color: darkgoldenrod;float: left;margin-right: 60px;">Photo 1:</label> <input style="float:left" type="file" id="file" name="file" />
+                <button ng-click="corres.add('photo1')" class="btn btn-success">Upload</button>
+            </div>
+            <div style="margin-top: 15px;">
+                <label style="float:left;color: darkgoldenrod;float: left;margin-right: 60px;">Photo 2:</label> <input style="float:left" type="file" id="file" name="file" />
+                <button ng-click="corres.add('photo2')" class="btn btn-success">Upload</button>
+            </div>
+            <div style="margin-top: 15px;">
+                <label style="float:left;color: darkgoldenrod;float: left;margin-right: 60px;">Photo 3:</label> <input style="float:left" type="file" id="file" name="file" />
+                <button ng-click="corres.add('photo3')" class="btn btn-success">Upload</button>
+            </div>
+            <div style="font-size: 14px;">
+                <b><u>Step: 2</u></b>
+            </div>
+            <div style="font-size: 12px;">
+                Write a brief note for the body of your email to send with the above attachement(The not will not be stored)
+            </div>
+            <div>
+                <textarea></textarea>
+            </div>
+        </div>
+    </div>
 
 </div>
 

@@ -2,7 +2,7 @@
 (function () {
     "use strict";
 
-    var app = angular.module("calfScramble", ["ngRoute","ngAnimate"]);
+    var app = angular.module("calfScramble", ["ngRoute", "ngAnimate", 'igniteui-directives', 'ngStorage']);
 
     //app.constant("routeUrl", "/CalfScramble/App/");   
     app.constant("routeUrl", "/App/");  
@@ -17,19 +17,23 @@
             })
             .when("/expense", {
                 templateUrl: routeUrl + "MonthlyExpense/Templates/monthlyExpense.html",
-                controller: "ExpenseController"
+                controller: "ExpenseController",
+                controllerAs: 'expense'
             })
             .when("/correspondence", {
                 templateUrl: routeUrl + "Correspondence/Templates/correspondence.html",
-                controller: "CorrespondenceController"
+                controller: "CorrespondenceController",
+                controllerAs: 'corres'
             })
             .when("/essays", {
                 templateUrl: routeUrl + "Essays/Templates/essays.html",
-                controller: "EssayController"
+                controller: "EssayController",
+                controllerAs: 'essay'
             })
             .when("/summary", {
                 templateUrl: routeUrl + "Summary/Templates/summary.html",
-                controller: "SummaryController"
+                controller: "SummaryController",
+                controllerAs: 'summary'
             })
             .when("/impersonation", {
                 templateUrl: "impersonation.html",

@@ -1,92 +1,43 @@
-﻿
+﻿(function () {
+    angular.module('calfScramble')
+        .controller('CorrespondenceController', CorrespondenceController);
 
-(function (app) {
-    "use strict";
+    CorrespondenceController.$inject = ['$scope', 'globalServices'];
 
-    var app = angular.module("calfScramble");
+    function CorrespondenceController($scope, globalServices) {
+        var vm = this;
+        vm.monthDetails;
+        vm.yearDetails;
+        vm.startDate = 11;
+        vm.endDate = 10
 
+        vm.add = add;
+        vm.downloadCoress = downloadCoress;
 
-    app.constant("homeUrl","/CalfScramble/Home/")
-    app.constant("docUrl", "/CalfScramble/DocumentAPI/");
+        function add(type) {
+            alert(type);
+            var f = document.getElementById('file').files[0],
+                r = new FileReader();
 
+            r.onloadend = function (e) {
+                var data = e.target.result;
+                globalServices.UploadData(f, type).then(function (res) {
+                });
+            }
+            r.readAsBinaryString(f);
+        }
 
-    //var baseUrl = "/WCBBQScoring/Home/";//http://localhost:8080/WCBBQScoring/ContestReporting/Index
-    //var judgeUrl = "/WCBBQScoring/ContestJudge/";
+        globalServices.getMonth().then(function (res) {
+            vm.monthDetails = res.data;
+        });
 
-    var CorrespondenceController = function ($scope, homeUrl, docUrl ) {
+        globalServices.getYear().then(function (res) {
+            vm.yearDetails = res.data;
+        });
 
-        //var apiUrl = "";
-
-        //var docObj = {
-        //    DocumentID: "",
-        //    HeaderID: "",
-        //    Photo: "",
-        //    PhotoFileType: "",
-        //    PhotoFileName: "",
-        //    Corresp: "",
-        //    CorrespFileType: "",
-        //    CorrespFileName: "",
-        //    Comments: "",
-        //    CreatedBy: ""
-        //};
-
-        //alert("Correspondence Controller");
-
-
-        //WebInsToWinDocument(Int32 documentID, Int32 headerID, byte[] photo, string photoFileType, string photoFileName,
-        //byte[] correspondence, string correspondenceFileType, string correspondenceFileName, string comments, Int32 createdBy
-
-
-        //var docID = docApi.WebInsToWinDocument(0, 61130, null, ".JPG", "TestFileName", null, null, null, "Testing without Photo", 1812);
-        //saveFile = function (dataModel, apiUrl)
-
-        //$scope.saveFile = function (dataVM) {
-
-        //    //docObj = {
-        //    //    DocumentID: "",
-        //    //    HeaderID: 61130,        //dataVM.HeaderID
-        //    //    Photo: "",              //dataVM.Photo        
-        //    //    PhotoFileType: "",      //dataVM.PhotoFileType
-        //    //    PhotoFileName: "",      //dataVM.PhotFileName
-        //    //    Corresp: "",            //dataVM.Correspondence
-        //    //    CorrespFileType: "",    //dataVM.CorrespFileTYpe
-        //    //    CorrespFileName: "",    //dataVM.CorrespFileName
-        //    //    Comments: "",           //dataVM.Comments
-        //    //    CreatedBy: 1812           //dataVM.CreatedBy
-        //    //};
-
-        //    docObj = {
-        //        DocumentID: "",
-        //        HeaderID: 61130,                    //dataVM.HeaderID,
-        //        Photo: "",                          //dataVM.Photo,        
-        //        PhotoFileType: "",                  //dataVM.PhotoFileType,
-        //        PhotoFileName: "",                  //dataVM.PhotFileName,
-        //        Corresp: dataVM.Correspondence,
-        //        CorrespFileType: "docx",            //dataVM.CorrespFileTYpe,
-        //        CorrespFileName: "Testing",         //dataVM.CorrespFileName,
-        //        Comments: dataVM.Comments,
-        //        CreatedBy: 1812                     //dataVM.CreatedBy
-        //    };
-
-
-
-        //    FileCommonServices.saveFile(docObj, docUrl + "WebInsToWinDocument")
-        //        .then(function (result) {
-        //            alert("File has been successfully saved.");
-        //        },
-        //        function (error) {
-        //            alert("Problem saving the document. " + error.statusText);
-        //        });
-        //};
-
-
-    };
-
-
-    CorrespondenceController.$inect = ["$scope", "homeUrl", "docUrl"];
-
-
-    app.controller("CorrespondenceController", CorrespondenceController);
-
-
-}());
+        function downloadCoress() {
+            globalServices.downloadCoress(1).then(function (res) {
+            });
+        }
+    }
+})();

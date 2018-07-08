@@ -9,4 +9,72 @@
         Scrambler ID: {{ scramblerLogIn.customerID }}
     </h3>
 
+    <div class="panel panel-default">
+        <div class="panel-heading" style="font-size: 15px;padding: 11px;color: cornflowerblue;">Essay And Business Plan</div>
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Document Type</th>
+                        <th>File Name</th>
+                        <th>File Upload Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="essay in summary.Essay">
+                        <td>{{essay.DocumentType}}</td>
+                        <td style="color:goldenrod">{{essay.FileName}}</td>
+                        <td>{{essay.FileUploadDate}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" style="font-size: 15px;padding: 11px;color: cornflowerblue;">Monthly Correspondence</div>
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Greeter Contacted</th>
+                        <th>Report Submit Date</th>
+                        <th>File Name</th>
+                        <th>File Upload Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="corr in summary.Correspodence">
+                        <td>{{corr.Month}}</td>
+                        <td>{{corr.GreeterContacted}}</td>
+                        <td>{{corr.ReportSubmitDate}}</td>
+                        <td style="color:goldenrod">{{corr.FileName}}</td>
+                        <td>{{corr.FileUploadDate}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" style="font-size: 15px;padding: 11px;color: cornflowerblue;">Photos</div>
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>File Name</th>
+                        <th>File Upload Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr ng-repeat="photo in summary.Photos">
+                        <td>{{photo.Month}}</td>
+                        <td style="color:goldenrod">{{photo.FileName}}</td>
+                        <td>{{photo.FileUploadDate}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
