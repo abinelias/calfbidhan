@@ -23,8 +23,9 @@
         vm.GetScramblerDetails = GetScramblerDetails;
         vm.EditInfo = EditInfo;
         vm.Save = Save;
+        vm.CheckAnimalFilled = CheckAnimalFilled;
 
-        GetScramblerDetails();
+        //GetScramblerDetails();
 
         globalServices.getMonth().then(function (res) {
             $localStorage.month = vm.monthDetails = res.data;
@@ -52,12 +53,19 @@
             vm.isEdit = true;
         }
 
+        function CheckAnimalFilled() {
+            if (vm.scramblerDetails.animal.ANIMAL_ID > 0)
+                return true;
+            else
+                return false;
+        }
+
         function Save() {
-          ///  vm.isEdit = true;
-            globalServices.saveCustomer(vm.scramblerDetails).then(function (res) {
-                ///// = res.data;
-                console.log(res.data);
-            });
+            console.log(vm.scramblerDetails);
+            //globalServices.saveCustomer(vm.scramblerDetails).then(function (res) {
+            //    ///// = res.data;
+            //    console.log(res.data);
+            //});
         }        
     }
 })();
