@@ -71,81 +71,74 @@
                             <tr>
                                 <td style="text-align:right">Animal Type:</td>
                                 <td>
-                                    <select ng-disabled="CheckAnimalFilled()" style="padding-left:20px;" class="form-control" ng-model="home.scramblerDetails.animal.ANIMAL_ID" ng-options="animalType.Id as animalType.Name for animalType in home.animalType"></select>
+                                    <select ng-disabled="home.animalDisable" style="padding-left:20px;" class="form-control" ng-model="home.scramblerDetails.animal.ANIMAL_TYPE" ng-options="animalType.Id as animalType.Name for animalType in home.animalType"></select>
                                 </td>
                             </tr>
-                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_ID == 1">
+                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Animal:</td>
-                                <td><input ng-disabled="CheckAnimalFilled()" ng-model="home.scramblerDetails.animal.ANIMAL_NAME" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.ANIMAL_NAME" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
                             </tr>
-                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_ID == 1">
+                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Registry #:</td>
-                                <td><input ng-disabled="CheckAnimalFilled()" ng-model="home.scramblerDetails.animal.REGISTRY_NO" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.REGISTRY_NO" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
                             </tr>
-                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_ID == 1">
+                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Date of Birth:</td>
-                                <td><input ng-disabled="CheckAnimalFilled()" ng-model="home.scramblerDetails.animal.DATE_OF_BIRTH" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.DATE_OF_BIRTH" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
                             </tr>
-                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_ID == 1">
+                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Name of Sire:</td>
-                                <td><input ng-disabled="CheckAnimalFilled()" ng-model="home.scramblerDetails.animal.NAME_OF_SIRE" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.NAME_OF_SIRE" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
                             </tr>
-                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_ID == 1">
+                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Sire Registry #:</td>
-                                <td><input ng-disabled="CheckAnimalFilled()" ng-model="home.scramblerDetails.animal.REGISTRY_NO_SIR" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.REGISTRY_NO_SIR" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
                             </tr>
-                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_ID == 1">
+                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Name of Dam:</td>
-                                <td><input ng-disabled="CheckAnimalFilled()" ng-model="home.scramblerDetails.animal.NAME_OF_DAM" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.NAME_OF_DAM" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
                             </tr>
-                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_ID == 1">
+                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Dam Registry #:</td>
-                                <td><input ng-disabled="CheckAnimalFilled()" ng-model="home.scramblerDetails.animal.REGISTRY_OF_DAM" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.REGISTRY_OF_DAM" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
                             </tr>
-                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_ID == 1">
+                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Breed:</td>
                                 <td>
-                                    <select ng-disabled="CheckAnimalFilled()" style="padding-left:20px;" class="form-control" ng-model="home.scramblerDetails.animal.BREED_TYPE" ng-options="breed.Id as breed.Name for breed in home.breed"></select>
+                                    <select ng-disabled="home.animalDisable" style="padding-left:20px;" class="form-control" ng-model="home.scramblerDetails.animal.BREED_TYPE" ng-options="breed.Id as breed.Name for breed in home.breed"></select>
                                 </td>
                             </tr>
-                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_ID == 1">
+                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Animal ID:</td>
-                                <td><input ng-disabled="CheckAnimalFilled()" ng-model="home.scramblerDetails.animal.ANIMAL_ID" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td><input ng-disabled="true" ng-model="home.scramblerDetails.animal.ANIMAL_ID" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
                             </tr>
-                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_ID == 1">
+                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Seller:</td>
-                                <td><input ng-disabled="CheckAnimalFilled()" ng-model="home.scramblerDetails.animal.SELLER" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.SELLER" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
                             </tr>
-                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_ID == 1">
+                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Purchase Date:</td>
-                                <td><input ng-disabled="CheckAnimalFilled()" ng-model="home.scramblerDetails.animal.PURCHASE_DATE" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.PURCHASE_DATE" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
                             </tr>
-                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_ID == 1">
+                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Total Animal Cost:</td>
-                                <td><input ng-disabled="CheckAnimalFilled()" ng-model="home.scramblerDetails.animal.COST_OF_HEIFER" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.COST_OF_HEIFER" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
                             </tr>
-                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_ID == 2">
+                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Steer'">
                                 <td style="text-align:right">Validation Tag:</td>
-                                <td><input ng-disabled="CheckAnimalFilled()" ng-model="home.scramblerDetails.animal.ANIMAL_ID" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.ANIMAL_ID" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
                             </tr>
-                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_ID == 2">
+                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Steer'">
                                 <td style="text-align:right">Sellar name:</td>
-                                <td><input ng-disabled="CheckAnimalFilled()" ng-model="home.scramblerDetails.animal.SELLER" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.SELLER" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
                             </tr>
-                            <tr ng-show="home.scramblerDetails.animal.ANIMAL_ID == 2">
+                            <tr ng-show="home.scramblerDetails.animal.ANIMAL_TYPE == 'Steer'">
                                 <td style="text-align:right">Purchase Date:</td>
-                                <td>
-                                    <div class='input-group date' id='datetimepicker1'>
-                                        <input ng-disabled="CheckAnimalFilled()" ng-model="home.scramblerDetails.animal.PURCHASE_DATE" type='text' class="form-control" data-date-end-date="0d" />
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-                                </td>
+                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.PURCHASE_DATE" type='text' class="form-control" style="padding-left:20px; padding-right:100px" /></td>
                             </tr>
-                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_ID == 2">
+                            <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Steer'">
                                 <td style="text-align:right">Cost:</td>
-                                <td><input ng-disabled="CheckAnimalFilled()" ng-model="home.scramblerDetails.animal.ANIMAL_ID" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.ANIMAL_ID" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
                             </tr>
                         </tbody>
                     </table>

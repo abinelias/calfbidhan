@@ -11,21 +11,21 @@
         vm.monthDetails = '';
         vm.states = [{ "Id": 0, "Name": "Select State" }, { "Id": "AL", "Name": "Alabama" }, { "Id": "FL", "Name": "Florida" },];
         vm.selectedBreed = 0;
-        vm.breed = [{ "Id": 0, "Name": "Select Breed" }, { "Id": 1, "Name": "BreedA" }, { "Id": 2, "Name": "BreedB" }];
+        vm.breed = [{ "Id": null, "Name": "Select Breed" }, { "Id": "BreedA", "Name": "BreedA" }, { "Id": "BreedB", "Name": "BreedB" }];
         vm.selectedAnimalType = 0;
-        vm.animalType = [{ "Id": 0, "Name": "Select Animal Type" }, { "Id": 1, "Name": "Heifer" }, { "Id": 2, "Name": "Steer" }];
+        vm.animalType = [{ "Id":null , "Name": "Select Animal Type" }, { "Id": "Heifer", "Name": "Heifer" }, { "Id": "Steer", "Name": "Steer" }];
         vm.selectedAttending = 0;
         vm.attending = [{ "Id": 0, "Name": "Yes" }, { "Id": 1, "Name": "No" }];
         vm.selectedTShirtSize = 0;
         vm.tShirtSize = [{ "Id": 0, "Name": "Select T-Shirt Size" }, { "Id": 1, "Name": "S" }, { "Id": 2, "Name": "M" }, { "Id": 3, "Name": "L" }, { "Id": 4, "Name": "XL" }, { "Id": 5, "Name": "XXL" }];
+        vm.animalDisable = false;
 
         // Functions defined on vm
         vm.GetScramblerDetails = GetScramblerDetails;
         vm.EditInfo = EditInfo;
         vm.Save = Save;
-        vm.CheckAnimalFilled = CheckAnimalFilled;
 
-        //GetScramblerDetails();
+        GetScramblerDetails();
 
         globalServices.getMonth().then(function (res) {
             $localStorage.month = vm.monthDetails = res.data;
@@ -38,34 +38,22 @@
         function GetScramblerDetails() {
             globalServices.GetScramblerDetails().then(function (res) {
                 vm.scramblerDetails = res.data;
-                console.log(res.data);
+                if (vm.scramblerDetails.animal.ANIMAL_ID > 0)
+                    vm.animalDisable = true;
             });
-            //HomePageService.GetScramblerDetails().then(function (res) {
-            //    vm.scramblerDetails = res.data;
-            //    vm.name = vm.scramblerDetails.FIRST_NAME + vm.scramblerDetails.LAST_NAME;
-            //});
-            //HomePageService.GetCurrentMonth().then(function (res) {
-            //    vm.monthDetails = res.data;
-            //});
         }
 
         function EditInfo() {
             vm.isEdit = true;
         }
 
-        function CheckAnimalFilled() {
-            if (vm.scramblerDetails.animal.ANIMAL_ID > 0)
-                return true;
-            else
-                return false;
-        }
-
         function Save() {
             console.log(vm.scramblerDetails);
-            //globalServices.saveCustomer(vm.scramblerDetails).then(function (res) {
-            //    ///// = res.data;
-            //    console.log(res.data);
-            //});
+            vm.scramblerDetails.animal.CUSTOMER_ID = vm.scramblerDetails.address.CUSTOMER_ID
+            globalServices.saveCustomer(vm.scramblerDetails).then(function (res) {
+                ///// = res.data;
+                console.log(res.data);
+            });
         }        
     }
 })();
