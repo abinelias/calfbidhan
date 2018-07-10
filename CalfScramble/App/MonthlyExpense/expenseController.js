@@ -89,7 +89,6 @@
         }
 
         function deleteExpense(id) {
-            alert(id);
             globalServices.DeleteExpense(id).then(function (res) {
                 InitalizeData();
             });

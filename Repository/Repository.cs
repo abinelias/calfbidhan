@@ -26,11 +26,12 @@ namespace Repository
                 return cs.addresses.Where(x => x.CUSTOMER_ID == id).FirstOrDefault();
             }
         }
-        public List<animal> GetAnimalsById(int id)
+        public animal GetAnimalsById(int id)
         {
             using (CalfScramblerEntities cs = new CalfScramblerEntities())
             {
-                return cs.animals.Where(x => x.CUSTOMER_ID == id).ToList();
+                var l = cs.animals.Where(x => x.CUSTOMER_ID == id).ToList();
+                return l.Any()?l.FirstOrDefault():new animal { ANIMAL_ID = 0 };
             }
         }
 
@@ -99,16 +100,18 @@ namespace Repository
                 Stream stream = files.InputStream;
                 BinaryReader reader = new BinaryReader(stream);
                 byte[] imgByte = reader.ReadBytes((int)stream.Length);
-                var file = cs.clfs_winner_monthly_documents.Where(x => x.HEADER_ID == header.HEADER_ID).FirstOrDefault();
+                var file = cs.clfs_winner_monthly_documents.Where(x => x.HEADER_ID == header.HEADER_ID&&x.COMMENTS==type).FirstOrDefault();
                 if (file == null)
                 {
                     switch (type)
                     {
                         case "corres":
-                            cs.clfs_winner_monthly_documents.Add(new clfs_winner_monthly_documents { HEADER_ID = header.HEADER_ID, CORRESPONDENCE = imgByte, CORR_FILE_NAME = files.FileName, CORR_FILE_TYPE = files.ContentType, CORR_SUBMIT_DATE = DateTime.Now });
+                            cs.clfs_winner_monthly_documents.Add(new clfs_winner_monthly_documents {COMMENTS=type, HEADER_ID = header.HEADER_ID, CORRESPONDENCE = imgByte, CORR_FILE_NAME = files.FileName, CORR_FILE_TYPE = files.ContentType, CORR_SUBMIT_DATE = DateTime.Now });
                             break;
                         case "photo1":
-                            cs.clfs_winner_monthly_documents.Add(new clfs_winner_monthly_documents { HEADER_ID = header.HEADER_ID, PHOTO = imgByte, PHOTO_FILE_NAME = files.FileName, PHOTO_FILE_TYPE = files.ContentType, PHOTO_SUBMIT_DATE = DateTime.Now });
+                        case "photo2":
+                        case "photo3":
+                            cs.clfs_winner_monthly_documents.Add(new clfs_winner_monthly_documents { COMMENTS = type, HEADER_ID = header.HEADER_ID, PHOTO = imgByte, PHOTO_FILE_NAME = files.FileName, PHOTO_FILE_TYPE = files.ContentType, PHOTO_SUBMIT_DATE = DateTime.Now });
                             break;
 
                     }
@@ -130,6 +133,7 @@ namespace Repository
                             file.PHOTO_FILE_NAME = files.FileName;
                             break;
                     }
+                    
                 }
                 cs.SaveChanges();
             }
@@ -202,13 +206,13 @@ namespace Repository
                 cs.SaveChanges();
             }
         }
-        public clfs_winner_monthly_documents GetAttachmentByHeaderId(int id, string month, int year)
+        public clfs_winner_monthly_documents GetAttachmentByHeaderId(int id, string month, int year,string type)
         {
             using (CalfScramblerEntities cs = new CalfScramblerEntities())
             {
                 var header = cs.clfs_winner_monthly_headers.Where(x => x.EXHIBITOR_ID == id && x.REPORTING_MONTH == month && x.SHOW_YEAR == year).FirstOrDefault();
 
-                return cs.clfs_winner_monthly_documents.Where(x => x.HEADER_ID == id).FirstOrDefault();
+                return cs.clfs_winner_monthly_documents.Where(x => x.HEADER_ID == header.HEADER_ID&& x.COMMENTS== type).FirstOrDefault();
             }
         }
 
@@ -235,7 +239,7 @@ namespace Repository
                 return cs.animals.Where(x => x.CUSTOMER_ID == cuid).ToList();
             }
         }
-        public bool UpdateCustomer(customer cu, address addr)
+        public bool UpdateCustomer(customer cu, address addr,animal an)
         {
             using (CalfScramblerEntities cs = new CalfScramblerEntities())
             {
@@ -255,6 +259,10 @@ namespace Repository
                 address.POSTAL = addr.POSTAL;
                 address.STATE = addr.STATE;
                 address.STATUS = addr.STATUS;
+                if (an.ANIMAL_ID == 0)
+                {
+                    cs.animals.Add(an);
+                }
                 cs.SaveChanges();
                 return true;
             }

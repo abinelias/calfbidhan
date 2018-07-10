@@ -12,11 +12,11 @@
         vm.endDate = 10
 
         vm.add = add;
-        vm.downloadCoress = downloadCoress;
+        vm.downloadFile = downloadFile;
 
         function add(type) {
-            alert(type);
-            var f = document.getElementById('file').files[0],
+          //  alert(type);
+            var f = document.getElementById(type).files[0],
                 r = new FileReader();
 
             r.onloadend = function (e) {
@@ -35,8 +35,8 @@
             vm.yearDetails = res.data;
         });
 
-        function downloadCoress() {
-            globalServices.downloadCoress(1).then(function (res) {
+        function downloadFile(type) {
+            globalServices.downloadCoress(type).then(function (res) {
             });
         }
     }

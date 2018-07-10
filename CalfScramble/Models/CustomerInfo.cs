@@ -9,6 +9,6 @@ namespace CalfScrambler.Models
     {
         public customer cutomer { get; set; }
         public address address { get; set; }
-        public List<animal> animals {get;set;}
+        public animal animal {get;set;}
     }
 }

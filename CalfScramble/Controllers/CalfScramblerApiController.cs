@@ -30,7 +30,7 @@ namespace CalfScramble.Controllers
             {
                 cutomer = db.GetCustomerById(id),
                 address = db.GetAddressById(id),
-                animals = db.GetAnimalsById(id)
+                animal = db.GetAnimalsById(id)
 
             };
         }
@@ -39,7 +39,7 @@ namespace CalfScramble.Controllers
         [HttpPost]
         public bool saveCustomer([FromBody] CustomerInfo data)
         {
-            return db.UpdateCustomer(data.cutomer,data.address);
+            return db.UpdateCustomer(data.cutomer,data.address,data.animal);
         }
 
         [ActionName("UploadTest")]
@@ -74,36 +74,36 @@ namespace CalfScramble.Controllers
         [HttpGet]
         public HttpResponseMessage GetEssayFileData(int id, string month, int year, string type)
         {
-            var file = db.GetAttachmentByHeaderId(id, month, year);
+            var file = db.GetEssayFile(id, month, year);
             MemoryStream dataStream = null;
             string fileNmae = string.Empty;
             if (type == "initass")
             {
-                dataStream = new MemoryStream(file.CORRESPONDENCE);
-                fileNmae = file.CORR_FILE_NAME;
+                dataStream = new MemoryStream(file.ASSESSMENT_INIT_BLOB);
+                fileNmae = file.ASSESSMENT_INIT_FILE_NAME;
             }
             else if (type == "finass")
             {
-                dataStream = new MemoryStream(file.PHOTO);
-                fileNmae = file.PHOTO_FILE_NAME;
+                dataStream = new MemoryStream(file.ASSESSMENT_FINAL_BLOB);
+                fileNmae = file.ASSESSMENT_FINAL_FILE_NAME;
 
             }
             else if (type == "monledger")
             {
-                dataStream = new MemoryStream(file.PHOTO);
-                fileNmae = file.PHOTO_FILE_NAME;
+                dataStream = new MemoryStream(file.LEDGER_MONTH_BLOB);
+                fileNmae = file.LEDGER_MONTH_FILE_NAME;
 
             }
             else if (type == "breedessay")
             {
-                dataStream = new MemoryStream(file.PHOTO);
-                fileNmae = file.PHOTO_FILE_NAME;
+                dataStream = new MemoryStream(file.BREED_RPT_BLOB);
+                fileNmae = file.BREED_FILE_NAME;
 
             }
             else if (type == "yearendessay")
             {
-                dataStream = new MemoryStream(file.PHOTO);
-                fileNmae = file.PHOTO_FILE_NAME;
+                dataStream = new MemoryStream(file.YEAR_END_RPT_BLOB);
+                fileNmae = file.YEAR_END_REPORT;
 
             }
 
@@ -120,7 +120,7 @@ namespace CalfScramble.Controllers
         [HttpGet]
         public HttpResponseMessage GetFileData(int id, string month, int year, string type)
         {
-            var file = db.GetAttachmentByHeaderId(id, month, year);
+            var file = db.GetAttachmentByHeaderId(id, month, year,type);
             MemoryStream dataStream = null;
             string fileNmae = string.Empty;
             if (type == "corres")
@@ -128,7 +128,7 @@ namespace CalfScramble.Controllers
                 dataStream = new MemoryStream(file.CORRESPONDENCE);
                 fileNmae = file.CORR_FILE_NAME;
             }
-            else if (type == "photo1")
+            else if (type.StartsWith( "photo",StringComparison.CurrentCultureIgnoreCase))
             {
                 dataStream = new MemoryStream(file.PHOTO);
                 fileNmae = file.PHOTO_FILE_NAME;

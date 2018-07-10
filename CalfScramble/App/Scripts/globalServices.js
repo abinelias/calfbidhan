@@ -34,7 +34,7 @@ function globalServices($http, $q, $localStorage, $sessionStorage) {
     function DeleteExpense(id) {
         var deferred = $q.defer();
         alert('hi');
-        deferred.resolve($http.post(baseWMUrl + 'DeleteExpense?id=' + id).then(function (result) {
+        deferred.resolve($http.get(baseWMUrl + 'DeleteExpense?id=' + id).then(function (result) {
             return result;
         }));
         return deferred.promise;
@@ -110,8 +110,8 @@ function globalServices($http, $q, $localStorage, $sessionStorage) {
         return deferred.promise;
     }
 
-    function downloadCoress(headerId) {
-        window.open(baseWMUrl + 'GetFileData?id=' + $localStorage.loggedInUserId + '&month=' + $localStorage.month + '&year=' + $localStorage.year + '&type=corres', '_blank', '');
+    function downloadCoress(type) {
+        window.open(baseWMUrl + 'GetFileData?id=' + $localStorage.loggedInUserId + '&month=' + $localStorage.month + '&year=' + $localStorage.year + '&type='+type, '_blank', '');
     }
 
     function UploadEssayData(data, Type) {
