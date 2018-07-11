@@ -51,8 +51,13 @@
             console.log(vm.scramblerDetails);
             vm.scramblerDetails.animal.CUSTOMER_ID = vm.scramblerDetails.address.CUSTOMER_ID
             globalServices.saveCustomer(vm.scramblerDetails).then(function (res) {
-                ///// = res.data;
-                console.log(res.data);
+                if (res.data) {
+                    globalServices.GetScramblerDetails().then(function (res) {
+                        vm.scramblerDetails = res.data;
+                        if (vm.scramblerDetails.animal.ANIMAL_ID > 0)
+                            vm.animalDisable = true;
+                    });
+                }
             });
         }        
     }

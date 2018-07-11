@@ -28,6 +28,8 @@
 
         function InitalizeData() {
             globalServices.GetExpense().then(function (res) {
+                vm.monthlyData = [];
+                vm.yearlyData = [];
                 vm.expenseDetails = res.data;
                 for (var i = 0; i < vm.expenseDetails.length; i++) {
                     if ($localStorage.month == vm.expenseDetails[i].month) {
@@ -76,7 +78,7 @@
                 if (res.data) {
                     vm.monthlyData = [];
                     vm.yearlyData = [];
-                    InitalizeData();
+                    vm.InitalizeData();
                 }
             });
         }
@@ -90,6 +92,7 @@
 
         function deleteExpense(id) {
             globalServices.DeleteExpense(id).then(function (res) {
+                console.log(res);
                 InitalizeData();
             });
         }

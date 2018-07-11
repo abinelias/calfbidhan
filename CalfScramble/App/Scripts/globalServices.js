@@ -33,7 +33,7 @@ function globalServices($http, $q, $localStorage, $sessionStorage) {
 
     function DeleteExpense(id) {
         var deferred = $q.defer();
-        alert('hi');
+        alert(id);
         deferred.resolve($http.get(baseWMUrl + 'DeleteExpense?id=' + id).then(function (result) {
             return result;
         }));
