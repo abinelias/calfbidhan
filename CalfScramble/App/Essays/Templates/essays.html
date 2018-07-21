@@ -18,10 +18,12 @@
                     <label style="float:left;color: darkgoldenrod;float: left;margin-right: 60px;">Initial Assessment:</label>
                 </div>
                 <div class="col-xs-5 col-md-5 col-sm-5">
-                    <input style="float:left" type="file" id="initass" name="initass" />
+                    <input ng-show="essay.EssayInfo.ASSESSMENT_INIT_BLOB.length == 0  || essay.EssayInfo== null || essay.EssayInfo.ASSESSMENT_INIT_BLOB == null" style="float:left" type="file" id="initass" name="initass" />
+                    <label ng-click="essay.downloadCoress('initass')" ng-show="essay.EssayInfo.ASSESSMENT_INIT_BLOB.length > 0" style="color: darkgoldenrod;">{{essay.EssayInfo.ASSESSMENT_INIT_FILE_NAME}}</label>
                 </div>
                 <div class="col-xs-2 col-md-2 col-sm-2">
-                    <button ng-click="essay.add('initass')" class="btn btn-success">Upload</button>
+                    <button ng-show="essay.EssayInfo.ASSESSMENT_INIT_BLOB.length == 0  || essay.EssayInfo== null || essay.EssayInfo.ASSESSMENT_INIT_BLOB == null" ng-click="essay.add('initass')" class="btn btn-success">Upload</button>
+                    <button ng-show="essay.EssayInfo.ASSESSMENT_INIT_BLOB.length > 0" ng-click="essay.DeleteEssayData('initass')" class="btn btn-success">Delete</button>
                 </div>
             </div>
             <div style="color:red">Monthly Ledger & Final Assessment Deadline: Month DD HH:MM A/PM</div>
@@ -30,10 +32,12 @@
                     <label style="float:left;color: darkgoldenrod;float: left;margin-right: 60px;">Monthly Ledger:</label>
                 </div>
                 <div class="col-xs-5 col-md-5 col-sm-5">
-                    <input style="float:left" type="file" id="monledger" name="monledger" />
+                    <input ng-show="essay.EssayInfo.LEDGER_MONTH_BLOB.length == 0  || essay.EssayInfo== null || essay.EssayInfo.LEDGER_MONTH_BLOB == null" style="float:left" type="file" id="monledger" name="monledger" />
+                    <label ng-click="essay.downloadCoress('monledger')" ng-show="essay.EssayInfo.LEDGER_MONTH_BLOB.length > 0" style="color: darkgoldenrod;">{{essay.EssayInfo.LEDGER_MONTH_FILE_NAME}}</label>
                 </div>
                 <div class="col-xs-2 col-md-2 col-sm-2">
-                    <button ng-click="essay.add('monledger')" class="btn btn-success">Upload</button>
+                    <button ng-show="essay.EssayInfo.LEDGER_MONTH_BLOB.length == 0  || essay.EssayInfo== null || essay.EssayInfo.LEDGER_MONTH_BLOB == null" ng-click="essay.add('monledger')" class="btn btn-success">Upload</button>
+                    <button ng-show="essay.EssayInfo.LEDGER_MONTH_BLOB.length > 0" ng-click="essay.DeleteEssayData('monledger')" class="btn btn-success">Delete</button>
                 </div>
             </div>
             <div class="row" style="margin-top: 15px;">
@@ -41,10 +45,12 @@
                     <label style="float:left;color: darkgoldenrod;float: left;margin-right: 60px;">Final Assessment:</label>
                 </div>
                 <div class="col-xs-5 col-md-5 col-sm-5">
-                    <input style="float:left" type="file" id="finass" name="finass" />
+                    <input ng-show="essay.EssayInfo.ASSESSMENT_FINAL_BLOB.length == 0  || essay.EssayInfo== null || essay.EssayInfo.ASSESSMENT_FINAL_BLOB == null" style="float:left" type="file" id="finass" name="finass" />
+                    <label ng-click="essay.downloadCoress('finass')" ng-show="essay.EssayInfo.ASSESSMENT_FINAL_BLOB.length > 0" style="color: darkgoldenrod;">{{essay.EssayInfo.ASSESSMENT_FINAL_FILE_NAME}}</label>
                 </div>
                 <div class="col-xs-2 col-md-2 col-sm-2">
-                    <button ng-click="essay.add('finass')" class="btn btn-success">Upload</button>
+                    <button ng-show="essay.EssayInfo.ASSESSMENT_FINAL_BLOB.length == 0  || essay.EssayInfo== null || essay.EssayInfo.ASSESSMENT_FINAL_BLOB == null" ng-click="essay.add('finass')" class="btn btn-success">Upload</button>
+                    <button ng-show="essay.EssayInfo.ASSESSMENT_FINAL_BLOB.length > 0" ng-click="essay.DeleteEssayData('finass')" class="btn btn-success">Delete</button>
                 </div>
             </div>
         </div>
@@ -58,10 +64,12 @@
                     <label style="float:left;color: darkgoldenrod;float: left;margin-right: 60px;">Breed Essay:</label>
                 </div>
                 <div class="col-xs-5 col-md-5 col-sm-5">
-                    <input style="float:left" type="file" id="breedessay" name="breedessay" />
+                    <input ng-show="essay.EssayInfo.BREED_RPT_BLOB.length == 0  || essay.EssayInfo== null || essay.EssayInfo.BREED_RPT_BLOB == null" style="float:left" type="file" id="breedessay" name="breedessay" />
+                    <label ng-click="essay.downloadCoress('breedessay')" ng-show="essay.EssayInfo.BREED_RPT_BLOB.length > 0" style="color: darkgoldenrod;">{{essay.EssayInfo.BREED_FILE_NAME}}</label>
                 </div>
                 <div class="col-xs-2 col-md-2 col-sm-2">
-                    <button ng-click="essay.add('breedessay')" class="btn btn-success">Upload</button>
+                    <button ng-show="essay.EssayInfo.BREED_RPT_BLOB.length == 0  || essay.EssayInfo== null || essay.EssayInfo.BREED_RPT_BLOB == null" ng-click="essay.add('breedessay')" class="btn btn-success">Upload</button>
+                    <button ng-show="essay.EssayInfo.BREED_RPT_BLOB.length > 0" ng-click="essay.DeleteEssayData('breedessay')" class="btn btn-success">Delete</button>
                 </div>
             </div>
             <div style="color:red">Initial Assessment Deadline: Month DD HH:MM A/PM</div>
@@ -70,10 +78,12 @@
                     <label style="float:left;color: darkgoldenrod;float: left;margin-right: 60px;">Year End Essay:</label>
                 </div>
                 <div class="col-xs-5 col-md-5 col-sm-5">
-                    <input style="float:left" type="file" id="yearendessay" name="yearendessay" />
+                    <input ng-show="essay.EssayInfo.YEAR_END_RPT_BLOB.length == 0  || essay.EssayInfo== null || essay.EssayInfo.YEAR_END_RPT_BLOB == null" style="float:left" type="file" id="yearendessay" name="yearendessay" />
+                    <label ng-click="essay.downloadCoress('yearendessay')" ng-show="essay.EssayInfo.YEAR_END_RPT_BLOB.length > 0" style="color: darkgoldenrod;">{{essay.EssayInfo.YREND_FILE_NAME}}</label>
                 </div>
                 <div class="col-xs-2 col-md-2 col-sm-2">
-                    <button ng-click="essay.add('yearendessay')" class="btn btn-success">Upload</button>
+                    <button ng-show="essay.EssayInfo.YEAR_END_RPT_BLOB.length == 0  || essay.EssayInfo== null || essay.EssayInfo.YEAR_END_RPT_BLOB == null" ng-click="essay.add('yearendessay')" class="btn btn-success">Upload</button>
+                    <button ng-show="essay.EssayInfo.YEAR_END_RPT_BLOB.length > 0" ng-click="essay.DeleteEssayData('yearendessay')" class="btn btn-success">Delete</button>
                 </div>
             </div>
         </div>

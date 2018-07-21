@@ -139,7 +139,72 @@ namespace Repository
             }
         }
 
-        public void saveEssayFile(string month, int year, string type, int customerId, HttpPostedFile files)
+        //public clfs_winner_info GetAllEssay(int year, int customerId)
+        //{
+        //    using (CalfScramblerEntities cs = new CalfScramblerEntities())
+        //    {
+        //        return cs.clfs_winner_info.Where(x => x.EXHIBITOR_ID == customerId && x.SHOW_YEAR == year).FirstOrDefault();
+        //    }
+        //}
+        public bool DeleteEssay(int id,string type)
+        {
+            using (CalfScramblerEntities cs = new CalfScramblerEntities())
+            {
+                var file = cs.clfs_winner_info.Where(x => x.Line_id == id ).FirstOrDefault();
+                if (file != null)
+                {
+                    switch (type)
+                    {
+                        case "initass":
+                            ///file.ASSESSMENT_INIT = files.FileName;
+                            file.ASSESSMENT_INIT_BLOB = null;
+                            file.ASSESSMENT_INIT_FILE_NAME = null;
+                            file.ASSESSMENT_INIT_FILE_TYPE = null;
+                            file.ASSESSMENT_INIT_SUBMIT_DATE = null;
+                            break;
+
+                        case "finass":
+                            //// file.ASSESSMENT_FINAL = files.FileName;
+                            file.ASSESSMENT_FINAL_BLOB = null;
+                            file.ASSESSMENT_FINAL_FILE_NAME = null;
+                            file.ASSESSMENT_FINAL_FILE_TYPE = null;
+                            file.ASSESSMENT_FINAL_SUBMIT_DATE = null;
+                            break;
+
+                        case "monledger":
+                            file.LEDGER_MONTH_BLOB = null;
+                            file.LEDGER_MONTH_FILE_NAME = null;
+                            file.LEDGER_MONTH_FILE_TYPE = null;
+                            file.LEDGER_MONTH_SUBMIT_DATE = null;
+                            break;
+                        case "breedessay":
+                            // file.BREED_ESSAY = files.FileName;
+                            file.BREED_RPT_BLOB = null;
+                            file.BREED_FILE_NAME = null;
+                            file.BREED_FILE_TYPE = null;
+                            file.BREED_RPT_SUBMIT_DATE = null;
+                            break;
+
+                        case "yearendessay":
+                            // file.YEAR_END_ESSAY = files.FileName;
+                            file.YEAR_END_RPT_BLOB = null;
+                            file.YREND_FILE_NAME = null;
+                            file.YREND_FILE_TYPE = null;
+                            file.YREND_RPT_SUBMIT_DATE = null;
+                            break;
+
+
+
+                    }
+                }
+               
+                cs.SaveChanges();
+            }
+            return true;
+        }
+
+
+            public void saveEssayFile(string month, int year, string type, int customerId, HttpPostedFile files)
         {
             using (CalfScramblerEntities cs = new CalfScramblerEntities())
             {
@@ -204,7 +269,10 @@ namespace Repository
                     }
                 }
                 cs.SaveChanges();
+                
+
             }
+            
         }
         public clfs_winner_monthly_documents GetAttachmentByHeaderId(int id, string month, int year,string type)
         {
@@ -228,6 +296,11 @@ namespace Repository
         {
             using (CalfScramblerEntities cs = new CalfScramblerEntities())
             {
+                if (animal.ANIMAL_TYPE.Equals("Steer", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    animal.ANIMAL_NAME = "Calf Scrambler";
+                    animal.DATE_OF_BIRTH = new DateTime(1901,1,1);
+                }
                 cs.animals.Add(animal);
             }
         }
@@ -239,6 +312,29 @@ namespace Repository
                 return cs.animals.Where(x => x.CUSTOMER_ID == cuid).ToList();
             }
         }
+        public List<clfs_winner_monthly_documents> GetAllAttachmentByHeaderId(int id, string month, int year)
+        {
+            using (CalfScramblerEntities cs = new CalfScramblerEntities())
+            {
+                var header = cs.clfs_winner_monthly_headers.Where(x => x.EXHIBITOR_ID == id && x.REPORTING_MONTH == month && x.SHOW_YEAR == year).FirstOrDefault();
+                if (header == null)
+                {
+                    return null;
+                }
+                return cs.clfs_winner_monthly_documents.Where(x => x.HEADER_ID == header.HEADER_ID ).ToList();
+            }
+        }
+        public bool DeleteDocById(int id)
+        {
+            using (CalfScramblerEntities cs = new CalfScramblerEntities())
+            {
+                cs.clfs_winner_monthly_documents.RemoveRange(cs.clfs_winner_monthly_documents.Where(x => x.CLFS_DOC_ID == id));
+                cs.SaveChanges();
+                return true;
+            }
+
+            }
+
         public bool UpdateCustomer(customer cu, address addr,animal an)
         {
             using (CalfScramblerEntities cs = new CalfScramblerEntities())
@@ -261,6 +357,11 @@ namespace Repository
                 address.STATUS = addr.STATUS;
                 if (an.ANIMAL_ID == 0)
                 {
+                    if (an.ANIMAL_TYPE.Equals("Steer", StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        an.ANIMAL_NAME = "Calf Scrambler";
+                        an.DATE_OF_BIRTH = new DateTime(1901, 1, 1);
+                    }
                     cs.animals.Add(an);
                 }
                 cs.SaveChanges();

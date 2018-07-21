@@ -8,8 +8,10 @@
         Scrambler Number: {{ scramblerLogIn.customerNumber}} <br />
         Scrambler ID: {{ scramblerLogIn.customerID }}
     </h3>
-
-    <div class="panel panel-default">
+    <div align="center">
+    <select class="form-control" ng-model="summary.selectedMonth" ng-change="summary.MonthSelection()" ng-options="animalType.Id as animalType.Name for animalType in summary.month"></select>
+    </div>
+    <div ng-show="summary.selectedMonth != null" class="panel panel-default">
         <div class="panel-heading" style="font-size: 15px;padding: 11px;color: cornflowerblue;">Essay And Business Plan</div>
         <div class="panel-body">
             <table class="table table-bordered">
@@ -21,16 +23,36 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="essay in summary.Essay">
-                        <td>{{essay.DocumentType}}</td>
-                        <td style="color:goldenrod">{{essay.FileName}}</td>
-                        <td>{{essay.FileUploadDate}}</td>
+                    <tr>
+                        <td>Initial Assessment</td>
+                        <td ng-click="summary.downloadCoress('initass')" style="color:goldenrod">{{summary.FullDoc.essay.ASSESSMENT_INIT_FILE_NAME}}</td>
+                        <td>{{summary.FullDoc.essay.ASSESSMENT_INIT_SUBMIT_DATE}}</td>
+                    </tr>
+                    <tr>
+                        <td>Monthly Ledgers	</td>
+                        <td ng-click="summary.downloadCoress('monledger')" style="color:goldenrod">{{summary.FullDoc.essay.LEDGER_MONTH_FILE_NAME}}</td>
+                        <td>{{summary.FullDoc.essay.LEDGER_MONTH_SUBMIT_DATE}}</td>
+                    </tr>
+                    <tr>
+                        <td>Final Assessment</td>
+                        <td ng-click="summary.downloadCoress('finass')" style="color:goldenrod">{{summary.FullDoc.essay.ASSESSMENT_FINAL_FILE_NAME}}</td>
+                        <td>{{summary.FullDoc.essay.ASSESSMENT_FINAL_SUBMIT_DATE}}</td>
+                    </tr>
+                    <tr>
+                        <td>Breed Essay</td>
+                        <td ng-click="summary.downloadCoress('breedessay')" style="color:goldenrod">{{summary.FullDoc.essay.BREED_FILE_NAME}}</td>
+                        <td>{{summary.FullDoc.essay.BREED_RPT_SUBMIT_DATE}}</td>
+                    </tr>
+                    <tr>
+                        <td>Year End Essay</td>
+                        <td ng-click="summary.downloadCoress('yearendessay')" style="color:goldenrod">{{summary.FullDoc.essay.YREND_FILE_NAME}}</td>
+                        <td>{{summary.FullDoc.essay.YREND_RPT_SUBMIT_DATE}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="panel panel-default">
+    <div ng-show="summary.selectedMonth != null" class="panel panel-default">
         <div class="panel-heading" style="font-size: 15px;padding: 11px;color: cornflowerblue;">Monthly Correspondence</div>
         <div class="panel-body">
             <table class="table table-bordered">
@@ -44,18 +66,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="corr in summary.Correspodence">
-                        <td>{{corr.Month}}</td>
-                        <td>{{corr.GreeterContacted}}</td>
-                        <td>{{corr.ReportSubmitDate}}</td>
-                        <td style="color:goldenrod">{{corr.FileName}}</td>
-                        <td>{{corr.FileUploadDate}}</td>
+                    <tr>
+                        <td ng-if="summary.CorresSubmitDate.length > 0">{{summary.selectedMonth}}</td>
+                        <td ng-if="summary.CorresSubmitDate.length == 0"></td>
+                        <td ng-if="summary.CorresSubmitDate.length > 0">Yes</td>
+                        <td ng-if="summary.CorresSubmitDate.length == 0"></td>
+                        <td>{{summary.CorresSubmitDate}}</td>
+                        <td  ng-click="summary.downloadFile('corres')" style="color:goldenrod">{{summary.corresFileName}}</td>
+                        <td>{{summary.CorresSubmitDate}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="panel panel-default">
+    <div ng-show="summary.selectedMonth != null" class="panel panel-default">
         <div class="panel-heading" style="font-size: 15px;padding: 11px;color: cornflowerblue;">Photos</div>
         <div class="panel-body">
             <table class="table table-bordered">
@@ -67,11 +91,10 @@
                     </tr>
                 </thead>
                 <tbody>
-
-                    <tr ng-repeat="photo in summary.Photos">
-                        <td>{{photo.Month}}</td>
-                        <td style="color:goldenrod">{{photo.FileName}}</td>
-                        <td>{{photo.FileUploadDate}}</td>
+                    <tr ng-repeat="photo in summary.FullDoc.monthly">
+                        <td ng-if="photo.COMMENTS == 'photo1' || photo.COMMENTS == 'photo2' ||photo.COMMENTS == 'photo3'">{{summary.selectedMonth}}</td>
+                        <td ng-click="summary.downloadFile(photo.COMMENTS)" style="color:goldenrod">{{photo.PHOTO_FILE_NAME}}</td>
+                        <td>{{photo.PHOTO_SUBMIT_DATE}}</td>
                     </tr>
                 </tbody>
             </table>

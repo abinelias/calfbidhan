@@ -28,9 +28,15 @@
                         </thead>
                         <tbody>
                             <tr ng-if="expense.AddNewExpense">
-                                <td><input type="text" placeholder="Expense Type" ng-model="expense.expenseType" class="form-control" /></td>
+                                <td>
+                                    <input ng-change="expense.ExpenseCheck()" type="text" placeholder="Expense Type" ng-model="expense.expenseType" class="form-control" />
+                                    <div ng-show="!expense.expenseTypeCorrect">Expense type should be alphanumeric</div>
+                                </td>
                                 <td><select class="form-control" ng-model="expense.selectedQuanity" ng-options="quantity.Id as quantity.Name for quantity in expense.quantity"></select></td>
-                                <td><input type="text" placeholder="UnitCost" ng-model="expense.unitCost" class="form-control" /></td>
+                                <td>
+                                    <input ng-change="expense.unitCostCheck()" type="text" placeholder="UnitCost" ng-model="expense.unitCost" class="form-control" />
+                                    <div ng-show="!expense.unitCostCorrect">Unit coust should be only numbers</div>
+                                </td>
                                 <td></td>
                                 <td>
                                     <button ng-click="expense.saveExpense(exp.Id)" class="btn btn-success">Add Expense</button>

@@ -17,10 +17,58 @@ function globalServices($http, $q, $localStorage, $sessionStorage) {
         getMonth: getMonth,
         DeleteExpense: DeleteExpense,
         UploadEssayData: UploadEssayData,
-        downloadEssayCoress: downloadEssayCoress
+        downloadEssayCoress: downloadEssayCoress,
+        GetCorrespondenceDetails: GetCorrespondenceDetails,
+        DeleteData: DeleteData,
+        GetEssayData: GetEssayData,
+        DeleteEssayData: DeleteEssayData,
+        GetAllDocuments: GetAllDocuments
     };
-
+    
     return globalAPI;
+
+    function GetAllDocuments(year, month) {
+        var deferred = $q.defer();
+        deferred.resolve($http.get(baseWMUrl + 'GetAllDocs?id=' + $localStorage.loggedInUserId + '&month=' + month + '&year=' + year).then(function (result) {
+            return result;
+        }));
+        return deferred.promise;
+    }
+
+    function DeleteEssayData(id, type) {
+        var deferred = $q.defer();
+        deferred.resolve($http.get(baseWMUrl + 'DeleteEssayByType?id=' + id + '&type=' + type).then(function (result) {
+            return result;
+        }));
+        return deferred.promise;
+    }
+
+    function GetEssayData(year, month) {
+        console.log(year);
+        console.log(month);
+        var deferred = $q.defer();
+        deferred.resolve($http.get(baseWMUrl + 'GetEssayFileFullData?id=' + $localStorage.loggedInUserId + '&month=' + month + '&year=' + year).then(function (result) {
+            return result;
+        }));
+        return deferred.promise;
+    }
+
+    function DeleteData(id) {
+        var deferred = $q.defer();
+        deferred.resolve($http.get(baseWMUrl + 'DeleteDocById?id=' + id).then(function (result) {
+            return result;
+        }));
+        return deferred.promise;
+    }
+
+    function GetCorrespondenceDetails(year, month) {
+        var val = $localStorage.loggedInUserId;
+        var deferred = $q.defer();
+        deferred.resolve($http.get(baseWMUrl + 'GetAllAttachmentByHeaderId?year=' + year + '&month=' + month+ '&id=' + $localStorage.loggedInUserId).then(function (result) {
+            return result;
+        }));
+        return deferred.promise;
+    }
 
     function GetScramblerDetails() {
         var val = $localStorage.loggedInUserId;
@@ -132,7 +180,7 @@ function globalServices($http, $q, $localStorage, $sessionStorage) {
         return deferred.promise;
     }
 
-    function downloadEssayCoress(headerId) {
-        window.open(baseWMUrl + 'GetEssayFileData?id=' + $localStorage.loggedInUserId + '&month=' + $localStorage.month + '&year=' + $localStorage.year + '&type=corres', '_blank', '');
+    function downloadEssayCoress(type) {
+        window.open(baseWMUrl + 'GetEssayFileData?id=' + $localStorage.loggedInUserId + '&month=' + $localStorage.month + '&year=' + $localStorage.year + '&type='+type, '_blank', '');
     }
 };

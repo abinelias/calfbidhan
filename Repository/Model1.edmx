@@ -120,23 +120,23 @@ warning 6002: The table/view 'CalfScrambler.dbo.clfs_authorization' does not hav
           <Property Name="ASSESSMENT_INIT_SUBMIT_DATE" Type="datetime" />
           <Property Name="ASSESSMENT_INIT_BLOB" Type="varbinary(max)" />
           <Property Name="ASSESSMENT_INIT_FILE_NAME" Type="nvarchar" MaxLength="100" />
-          <Property Name="ASSESSMENT_INIT_FILE_TYPE" Type="nvarchar" MaxLength="10" />
+          <Property Name="ASSESSMENT_INIT_FILE_TYPE" Type="nvarchar" MaxLength="100" />
           <Property Name="LEDGER_MONTH_SUBMIT_DATE" Type="datetime" />
           <Property Name="LEDGER_MONTH_BLOB" Type="varbinary(max)" />
           <Property Name="LEDGER_MONTH_FILE_NAME" Type="nvarchar" MaxLength="100" />
-          <Property Name="LEDGER_MONTH_FILE_TYPE" Type="nvarchar" MaxLength="10" />
+          <Property Name="LEDGER_MONTH_FILE_TYPE" Type="nvarchar" MaxLength="100" />
           <Property Name="ASSESSMENT_FINAL_SUBMIT_DATE" Type="datetime" />
           <Property Name="ASSESSMENT_FINAL_BLOB" Type="varbinary(max)" />
           <Property Name="ASSESSMENT_FINAL_FILE_NAME" Type="nvarchar" MaxLength="100" />
-          <Property Name="ASSESSMENT_FINAL_FILE_TYPE" Type="nvarchar" MaxLength="10" />
+          <Property Name="ASSESSMENT_FINAL_FILE_TYPE" Type="nvarchar" MaxLength="100" />
           <Property Name="BREED_RPT_SUBMIT_DATE" Type="datetime" />
           <Property Name="BREED_RPT_BLOB" Type="varbinary(max)" />
           <Property Name="BREED_FILE_NAME" Type="nvarchar" MaxLength="100" />
-          <Property Name="BREED_FILE_TYPE" Type="nvarchar" MaxLength="10" />
+          <Property Name="BREED_FILE_TYPE" Type="nvarchar" MaxLength="100" />
           <Property Name="YREND_RPT_SUBMIT_DATE" Type="datetime" />
           <Property Name="YEAR_END_RPT_BLOB" Type="varbinary(max)" />
           <Property Name="YREND_FILE_NAME" Type="nvarchar" MaxLength="100" />
-          <Property Name="YREND_FILE_TYPE" Type="nvarchar" MaxLength="10" />
+          <Property Name="YREND_FILE_TYPE" Type="nvarchar" MaxLength="100" />
           <Property Name="DOCUMENT_ID_BRRPT" Type="int" />
           <Property Name="DOCUMENT_ID_YERPT" Type="int" />
           <Property Name="GREETER_CUST_ID" Type="int" />
@@ -426,23 +426,23 @@ warning 6002: The table/view 'CalfScrambler.dbo.clfs_authorization' does not hav
           <Property Name="ASSESSMENT_INIT_SUBMIT_DATE" Type="DateTime" Precision="3" />
           <Property Name="ASSESSMENT_INIT_BLOB" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="ASSESSMENT_INIT_FILE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ASSESSMENT_INIT_FILE_TYPE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ASSESSMENT_INIT_FILE_TYPE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="LEDGER_MONTH_SUBMIT_DATE" Type="DateTime" Precision="3" />
           <Property Name="LEDGER_MONTH_BLOB" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="LEDGER_MONTH_FILE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="LEDGER_MONTH_FILE_TYPE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LEDGER_MONTH_FILE_TYPE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ASSESSMENT_FINAL_SUBMIT_DATE" Type="DateTime" Precision="3" />
           <Property Name="ASSESSMENT_FINAL_BLOB" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="ASSESSMENT_FINAL_FILE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ASSESSMENT_FINAL_FILE_TYPE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ASSESSMENT_FINAL_FILE_TYPE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="BREED_RPT_SUBMIT_DATE" Type="DateTime" Precision="3" />
           <Property Name="BREED_RPT_BLOB" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="BREED_FILE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="BREED_FILE_TYPE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="BREED_FILE_TYPE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="YREND_RPT_SUBMIT_DATE" Type="DateTime" Precision="3" />
           <Property Name="YEAR_END_RPT_BLOB" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="YREND_FILE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="YREND_FILE_TYPE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="YREND_FILE_TYPE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="DOCUMENT_ID_BRRPT" Type="Int32" />
           <Property Name="DOCUMENT_ID_YERPT" Type="Int32" />
           <Property Name="GREETER_CUST_ID" Type="Int32" />

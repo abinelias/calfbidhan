@@ -13,6 +13,8 @@
         vm.AddNewExpense = true;
         vm.monthlyData = [];
         vm.yearlyData = [];
+        vm.expenseTypeCorrect = true;
+        vm.unitCostCorrect = true;
         vm.quantity = [{ "Id": 0, "Name": "Select Quantity" }, { "Id": 1, "Name": 1 }, { "Id": 2, "Name": 2 }, { "Id": 3, "Name": 3 }, { "Id": 4, "Name": 4 }, { "Id": 5, "Name": 5 }, { "Id": 6, "Name": 6 }, { "Id": 7, "Name": 7 }, { "Id": 8, "Name": 8 }, { "Id": 9, "Name": 9 }, { "Id": 10, "Name": 10 }]
 
         // Functions defined on vm
@@ -23,8 +25,34 @@
         vm.cancelExpense = cancelExpense;
         vm.deleteExpense = deleteExpense;
         vm.InitalizeData = InitalizeData;
+        vm.ExpenseCheck = ExpenseCheck;
+        vm.unitCostCheck = unitCostCheck;
 
         InitalizeData();
+
+        function ExpenseCheck() {
+            var exp = /^[a-z0-9]+$/i;
+            if (exp.test(vm.expenseType)) {
+                vm.expenseTypeCorrect = true;
+                return true;
+            }
+            else {
+                vm.expenseTypeCorrect = false;
+                return false;
+            }
+        }
+
+        function unitCostCheck() {
+            var reg = /^\d+$/;
+            if (reg.test(vm.unitCost)) {
+                vm.unitCostCorrect = true;
+                return true;
+            }
+            else {
+                vm.unitCostCorrect = false;
+                return false;
+            }
+        }
 
         function InitalizeData() {
             globalServices.GetExpense().then(function (res) {
@@ -62,25 +90,30 @@
         }
 
         function saveExpense() {
-            var data = {};
-            data.expensetype = vm.expenseType;
-            data.quantity = vm.selectedQuanity;
-            data.unitcost = vm.unitCost;
-            data.year = $localStorage.year;
-            data.customerid = 1;
-            data.month = $localStorage.month;
-            vm.selectedQuanity = 0;
-            vm.expenseType = '';
-            vm.unitCost = '';
-            vm.AddNewExpense = true;
+            if (vm.unitCostCorrect || vm.expenseTypeCorrect) {
+                var data = {};
+                data.expensetype = vm.expenseType;
+                data.quantity = vm.selectedQuanity;
+                data.unitcost = vm.unitCost;
+                data.year = $localStorage.year;
+                data.customerid = 1;
+                data.month = $localStorage.month;
+                vm.selectedQuanity = 0;
+                vm.expenseType = '';
+                vm.unitCost = '';
+                vm.AddNewExpense = true;
 
-            globalServices.AddExpense(data).then(function (res) {
-                if (res.data) {
-                    vm.monthlyData = [];
-                    vm.yearlyData = [];
-                    vm.InitalizeData();
-                }
-            });
+                globalServices.AddExpense(data).then(function (res) {
+                    if (res.data) {
+                        vm.monthlyData = [];
+                        vm.yearlyData = [];
+                        vm.InitalizeData();
+                    }
+                });
+            }
+            else {
+                alert("Please correect the values");
+            }
         }
 
         function cancelExpense() {

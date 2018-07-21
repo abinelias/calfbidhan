@@ -30,9 +30,11 @@
                 There are free file convertor available over internel
             </div>
             <div style="margin-top: 15px;">
-                <label style="float:left;color: darkgoldenrod;float: left;margin-right: 60px;">Correspondence</label> <input style="float:left" type="file" id="corres" name="corres" />
-                <button ng-click="corres.add('corres')" class="btn btn-success">Uploads</button>
-                <button ng-click="corres.downloadFile('corres')" class="btn btn-success">Download</button>
+                <label style="float:left;color: darkgoldenrod;float: left;margin-right: 60px;">Correspondence</label> <input ng-show="corres.CorrespondenceDoc.length == 0" style="float:left" type="file" id="corres" name="corres" />
+                <button ng-show="corres.CorrespondenceDoc.length == 0" ng-click="corres.add('corres')" class="btn btn-success">Upload</button>
+
+                <label style="color: darkgoldenrod;" ng-click="corres.downloadFile('corres')" ng-show="corres.CorrespondenceDoc.length > 0">{{corres.CorrespondenceName}}</label>
+                <button ng-show="corres.CorrespondenceDoc.length > 0" style="margin-left:50px;" ng-click="corres.DeleteData(corres.corresId)" class="btn btn-success">Delete</button>
 
             </div>
             <div style="font-size: 14px;">
@@ -45,22 +47,29 @@
                 Attach upto three photos of the month. Must be in following file types .jpg, .png, .tif, .gif or bmp
             </div>
             <div style="margin-top: 15px;">
-                <label style="float:left;color: darkgoldenrod;float: left;margin-right: 60px;">Photo 1:</label> <input style="float:left" type="file" id="photo1" name="photo1" />
-                <button ng-click="corres.add('photo1')" class="btn btn-success">Upload</button>
-                <button ng-click="corres.downloadFile('photo1')" class="btn btn-success">Download</button>
+                <label style="float:left;color: darkgoldenrod;float: left;margin-right: 60px;">Photo 1:</label> <input ng-show="corres.photo1.length == 0" style="float:left" type="file" id="photo1" name="photo1" />
+                <button ng-show="corres.photo1.length == 0" ng-click="corres.add('photo1')" class="btn btn-success">Upload</button>
+
+                <label style="color: darkgoldenrod;" ng-click="corres.downloadFile('photo1')" ng-show="corres.photo1.length > 0">{{corres.photo1Name}}</label>
+                <img ng-show="corres.photo1.length > 0" id="photo1" ng-click="corres.downloadFile('photo1')" style="width:50px;height:50px;" src="{{corres.photo1}}"/>
+                <button ng-show="corres.photo1.length > 0" style="margin-left:50px;" ng-click="corres.DeleteData(corres.photo1Id)" class="btn btn-success">Delete</button>
 
             </div>
             <div style="margin-top: 15px;">
-                <label style="float:left;color: darkgoldenrod;float: left;margin-right: 60px;">Photo 2:</label> <input style="float:left" type="file" id="photo2" name="photo2" />
-                <button ng-click="corres.add('photo2')" class="btn btn-success">Upload</button>
-                <button ng-click="corres.downloadFile('photo2')" class="btn btn-success">Download</button>
+                <label style="float:left;color: darkgoldenrod;float: left;margin-right: 60px;">Photo 2:</label> <input ng-show="corres.photo2.length == 0" style="float:left" type="file" id="photo2" name="photo2" />
+                <button ng-show="corres.photo2.length == 0" ng-click="corres.add('photo2')" class="btn btn-success">Upload</button>
 
+                <label style="color: darkgoldenrod;" ng-click="corres.downloadFile('photo2')" ng-show="corres.photo2.length > 0">{{corres.photo2Name}}</label>
+                <img ng-show="corres.photo2.length > 0" id="photo1" ng-click="corres.downloadFile('photo2')" style="width:50px;height:50px;" src="{{corres.photo2}}" />
+                <button ng-show="corres.photo2.length > 0" style="margin-left:50px;" ng-click="corres.DeleteData(corres.photo2Id)" class="btn btn-success">Delete</button>
             </div>
             <div style="margin-top: 15px;">
-                <label style="float:left;color: darkgoldenrod;float: left;margin-right: 60px;">Photo 3:</label> <input style="float:left" type="file" id="photo3" name="photo3" />
-                <button ng-click="corres.add('photo3')" class="btn btn-success">Upload</button>
-                <button ng-click="corres.downloadFile('photo3')" class="btn btn-success">Download</button>
+                <label style="float:left;color: darkgoldenrod;float: left;margin-right: 60px;">Photo 3:</label> <input ng-show="corres.photo3.length == 0" style="float:left" type="file" id="photo3" name="photo3" />
+                <button ng-show="corres.photo3.length == 0" ng-click="corres.add('photo3')" class="btn btn-success">Upload</button>
 
+                <label style="color: darkgoldenrod;" ng-click="corres.downloadFile('photo3')" ng-show="corres.photo3.length > 0">{{corres.photo3name}}</label>
+                <img ng-show="corres.photo3.length > 0" id="photo1" ng-click="corres.downloadFile('photo3')" style="width:50px;height:50px;" src="{{corres.photo3}}" />
+                <button ng-show="corres.photo3.length > 0" style="margin-left:50px;" ng-click="corres.DeleteData(corres.photo3Id)" class="btn btn-success">Delete</button>
             </div>
             <div style="font-size: 14px;">
                 <b><u>Step: 2</u></b>

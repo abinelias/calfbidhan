@@ -39,7 +39,7 @@ namespace CalfScramble.Controllers
         [HttpPost]
         public bool saveCustomer([FromBody] CustomerInfo data)
         {
-            return db.UpdateCustomer(data.cutomer,data.address,data.animal);
+            return db.UpdateCustomer(data.cutomer, data.address, data.animal);
         }
 
         [ActionName("UploadTest")]
@@ -120,7 +120,7 @@ namespace CalfScramble.Controllers
         [HttpGet]
         public HttpResponseMessage GetFileData(int id, string month, int year, string type)
         {
-            var file = db.GetAttachmentByHeaderId(id, month, year,type);
+            var file = db.GetAttachmentByHeaderId(id, month, year, type);
             MemoryStream dataStream = null;
             string fileNmae = string.Empty;
             if (type == "corres")
@@ -128,7 +128,7 @@ namespace CalfScramble.Controllers
                 dataStream = new MemoryStream(file.CORRESPONDENCE);
                 fileNmae = file.CORR_FILE_NAME;
             }
-            else if (type.StartsWith( "photo",StringComparison.CurrentCultureIgnoreCase))
+            else if (type.StartsWith("photo", StringComparison.CurrentCultureIgnoreCase))
             {
                 dataStream = new MemoryStream(file.PHOTO);
                 fileNmae = file.PHOTO_FILE_NAME;
@@ -194,6 +194,39 @@ namespace CalfScramble.Controllers
         public bool DeleteExpense(int id)
         {
             return db.DeleteExpense(id);
+        }
+        [ActionName("GetAllAttachmentByHeaderId")]
+        [HttpGet]
+        public IReadOnlyList<clfs_winner_monthly_documents> GetAllAttachmentByHeaderId(int id, string month, int year)
+        {
+            return db.GetAllAttachmentByHeaderId(id, month, year);
+        }
+        [ActionName("DeleteDocById")]
+        [HttpGet]
+        public bool DeleteDocById(int id)
+        {
+            return db.DeleteDocById(id);
+        }
+        [ActionName("DeleteEssayByType")]
+        [HttpGet]
+        public bool DeleteEssayByType(int id, string type)
+        {
+            return db.DeleteEssay(id, type);
+        }
+
+        [ActionName("GetEssayFileFullData")]
+        [HttpGet]
+        public clfs_winner_info GetEssayFileFullData(int id, string month, int year)
+        {
+            return db.GetEssayFile(id, month, year);
+        }
+
+        [ActionName("GetAllDocs")]
+        [HttpGet]
+        public Documents GetAllDocs(int id, string month, int year)
+        {
+            return new Documents { essay = db.GetEssayFile(id, month, year) ,monthly= db.GetAllAttachmentByHeaderId(id, month, year) };
+    
         }
     }
 }
