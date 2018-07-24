@@ -11,6 +11,8 @@
         vm.startDate = 11;
         vm.endDate = 10;
         vm.EssayInfo;
+        vm.DeadlineDate;
+        vm.diffDays = 0;
 
         vm.add = add;
         vm.downloadCoress = downloadCoress;
@@ -25,7 +27,14 @@
                 vm.monthDetails = res.data;
                 globalServices.getYear().then(function (res) {
                     vm.yearDetails = res.data;
-                    getEssayDetails();
+                    globalServices.GetDeadLineDate().then(function (res) {
+                        vm.DeadlineDate = res.data;
+                        var date1 = new Date();
+                        var date2 = new Date("07/22/2018");
+                        var timeDiff = date2.getTime() - date1.getTime();
+                        vm.diffDays =  parseInt(Math.ceil(timeDiff / (1000 * 3600 * 24)));
+                        getEssayDetails();
+                    });
                 });
             });
         }

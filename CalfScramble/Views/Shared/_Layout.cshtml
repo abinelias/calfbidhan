@@ -74,7 +74,35 @@
         .borderless > tfoot > tr > td {
             border-top: none;
         }
+        li {
+            padding: 8px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        a:hover, a:focus {
+            color: white !important;
+            text-decoration: none;
+            outline: none;
+        }
+
+        .active {
+            font-size: 30px;
+            color: white !important;
+            border-bottom: 5px solid red;
+        }
     </style>
+    <script>
+        $(document).ready(function () {
+            $('a').click(function () {
+                $('a').removeClass("active");
+                $(this).addClass("active");
+            });
+        });
+    </script>
 </head>
 
 <body ng-controller="MainController" ng-cloak>

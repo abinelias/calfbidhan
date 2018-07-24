@@ -160,6 +160,16 @@ namespace CalfScramble.Controllers
             string year = WebConfigurationManager.AppSettings["Year"];
             return year;
         }
+
+        [ActionName("GetDeadLineDate")]
+        [HttpGet]
+        public string GetDeadLineDate()
+        {
+            string date = WebConfigurationManager.AppSettings["Deadline"];
+            return date;
+        }
+
+
         [ActionName("SaveAnimal")]
         [HttpPost]
         public bool SaveAnimal(animal animal)

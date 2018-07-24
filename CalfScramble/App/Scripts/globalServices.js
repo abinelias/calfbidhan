@@ -22,10 +22,19 @@ function globalServices($http, $q, $localStorage, $sessionStorage) {
         DeleteData: DeleteData,
         GetEssayData: GetEssayData,
         DeleteEssayData: DeleteEssayData,
-        GetAllDocuments: GetAllDocuments
+        GetAllDocuments: GetAllDocuments,
+        GetDeadLineDate: GetDeadLineDate
     };
     
     return globalAPI;
+
+    function GetDeadLineDate() {
+        var deferred = $q.defer();
+        deferred.resolve($http.get(baseWMUrl + 'GetDeadLineDate').then(function (result) {
+            return result;
+        }));
+        return deferred.promise;
+    }
 
     function GetAllDocuments(year, month) {
         var deferred = $q.defer();
