@@ -28,13 +28,22 @@
                             </tr>
                             <tr>
                                 <td style="text-align:right">Address:</td>
-                                <td><input ng-model="home.scramblerDetails.address.ADDRESS1" type="text" class="form-control" style="padding-left:20px" /></td>
+                                <td>
+                                    <input ng-change="home.alphaNumericWithSpaceCheck(home.scramblerDetails.address.ADDRESS1, 'address')" ng-model="home.scramblerDetails.address.ADDRESS1" type="text" class="form-control" style="padding-left:20px" />
+                                    <div style="color:red" ng-show="!home.addressCorrect">Address should be alphanumeric</div>
+                                </td>
                                 <td style="text-align:right">Secondary Email:</td>
-                                <td><input ng-model="home.scramblerDetails.address.EMAIL_SECOND" type="text" class="form-control" style="padding-left:20px" /></td>
+                                <td>
+                                    <input ng-change="home.validateEmail()" ng-model="home.scramblerDetails.address.EMAIL_SECOND" type="text" class="form-control" style="padding-left:20px" />
+                                    <div style="color:red" ng-show="!home.emailCorrect">Email not in correct format</div>
+                                </td>
                             </tr>
                             <tr>
                                 <td style="text-align:right">City:</td>
-                                <td><input ng-model="home.scramblerDetails.address.CITY" type="text" class="form-control" style="padding-left:20px" /></td>
+                                <td>
+                                    <input ng-change="home.alphaNumericCheck(home.scramblerDetails.address.CITY, 'city')" ng-model="home.scramblerDetails.address.CITY" type="text" class="form-control" style="padding-left:20px" />
+                                    <div style="color:red" ng-show="!home.cityCorrect">City should be alphanumeric</div>
+                                </td>
                                 <td style="text-align:right">Chapter:</td>
                                 <td><input ng-disabled="true" ng-model="home.scramblerDetails.address.EMAIL" type="text" class="form-control" style="padding-left:20px" /></td>
                             </tr>
@@ -48,7 +57,10 @@
                             </tr>
                             <tr>
                                 <td style="text-align:right">ZIP:</td>
-                                <td><input ng-model="home.scramblerDetails.address.POSTAL" type="text" class="form-control" style="padding-left:20px" /></td>
+                                <td>
+                                    <input ng-change="home.onlyNumbers(home.scramblerDetails.address.POSTAL, 'zip')" ng-model="home.scramblerDetails.address.POSTAL" type="text" class="form-control" style="padding-left:20px" />
+                                    <div style="color:red" ng-show="!home.zipCorrect">Zip should be only numbers</div>
+                                </td>
                                 <td style="text-align:right">CEA or AST Email:</td>
                                 <td><input ng-disabled="true" ng-model="home.scramblerDetails.address.EMAIL" type="text" class="form-control" style="padding-left:20px" /></td>
                             </tr>
@@ -76,31 +88,51 @@
                             </tr>
                             <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Animal:</td>
-                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.ANIMAL_NAME" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td>
+                                    <input ng-change="home.alphaNumericCheck(home.scramblerDetails.animal.ANIMAL_NAME, 'animalName')" ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.ANIMAL_NAME" type="text" class="form-control" style="padding-left:20px; padding-right:100px" />
+                                    <div style="color:red" ng-show="!home.animalNameCorrect">Animal name should be alphanumeric</div>
+                                </td>
                             </tr>
                             <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Registry #:</td>
-                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.REGISTRY_NO" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td>
+                                    <input ng-change="home.alphaNumericCheck(home.scramblerDetails.animal.REGISTRY_NO, 'registryNumber')" ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.REGISTRY_NO" type="text" class="form-control" style="padding-left:20px; padding-right:100px" />
+                                    <div style="color:red" ng-show="!home.registerNoCorrect">Registry Number should be Alphanumeric</div>
+                                </td>
                             </tr>
                             <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Date of Birth:</td>
-                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.DATE_OF_BIRTH" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td>
+                                    <input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.DATE_OF_BIRTH" type="text" class="form-control" style="padding-left:20px; padding-right:100px" />
+                                </td>
                             </tr>
                             <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Name of Sire:</td>
-                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.NAME_OF_SIRE" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td>
+                                    <input ng-change="home.alphaNumericCheck(home.scramblerDetails.animal.NAME_OF_SIRE, 'nameOfSire')" ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.NAME_OF_SIRE" type="text" class="form-control" style="padding-left:20px; padding-right:100px" />
+                                    <div style="color:red" ng-show="!home.SirNameCorrect">Name of Sire should be Alphanumeric</div>
+                                </td>
                             </tr>
                             <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Sire Registry #:</td>
-                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.REGISTRY_NO_SIR" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td>
+                                    <input ng-change="home.alphaNumericCheck(home.scramblerDetails.animal.REGISTRY_NO_SIR, 'SireRegisterNo')" ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.REGISTRY_NO_SIR" type="text" class="form-control" style="padding-left:20px; padding-right:100px" />
+                                    <div style="color:red" ng-show="!home.registerSirCorrect">Sire Registry Number should be Alphanumeric</div>
+                                </td>
                             </tr>
                             <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Name of Dam:</td>
-                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.NAME_OF_DAM" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td>
+                                    <input ng-change="home.alphaNumericCheck(home.scramblerDetails.animal.NAME_OF_DAM, 'nameOfDam')" ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.NAME_OF_DAM" type="text" class="form-control" style="padding-left:20px; padding-right:100px" />
+                                    <div style="color:red" ng-show="!home.damNameCorrect">Name of Dam should be Alphanumeric</div>
+                                </td>
                             </tr>
                             <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Dam Registry #:</td>
-                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.REGISTRY_OF_DAM" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td>
+                                    <input ng-change="home.alphaNumericCheck(home.scramblerDetails.animal.REGISTRY_OF_DAM, 'DamRegisterNo')" ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.REGISTRY_OF_DAM" type="text" class="form-control" style="padding-left:20px; padding-right:100px" />
+                                    <div style="color:red" ng-show="!home.registryDamCorrect">Dam Registry Number should be Alphanumeric</div>
+                                </td>
                             </tr>
                             <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Breed:</td>
@@ -110,11 +142,17 @@
                             </tr>
                             <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Animal ID:</td>
-                                <td><input ng-disabled="true" ng-model="home.scramblerDetails.animal.ANIMAL_ID" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td>
+                                    <input ng-change="home.alphaNumericCheck(home.scramblerDetails.animal.ANIMAL_IDENTIFICATION, 'animalIdentification')" ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.ANIMAL_IDENTIFICATION" type="text" class="form-control" style="padding-left:20px; padding-right:100px" />
+                                    <div style="color:red" ng-show="!home.animalIdentificationCorrect">Animal Id should be Alphanumeric</div>
+                                </td>
                             </tr>
                             <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Seller:</td>
-                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.SELLER" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td>
+                                    <input ng-change="home.alphaNumericCheck(home.scramblerDetails.animal.SELLER, 'Sellar')" ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.SELLER" type="text" class="form-control" style="padding-left:20px; padding-right:100px" />
+                                    <div style="color:red" ng-show="!home.sellarCorrect">Sellar Name should be Alphanumeric</div>
+                                </td>
                             </tr>
                             <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Purchase Date:</td>
@@ -122,15 +160,21 @@
                             </tr>
                             <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Total Animal Cost:</td>
-                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.COST_OF_HEIFER" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td>
+                                    <input ng-change="home.onlyNumbers(home.scramblerDetails.animal.COST_OF_HEIFER, 'hiferCost')" ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.COST_OF_HEIFER" type="text" class="form-control" style="padding-left:20px; padding-right:100px" />
+                                    <div style="color:red" ng-show="!home.hiferCostCorrect">Cost of hifer should be only numbers</div>
+                                </td>
                             </tr>
                             <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Steer'">
                                 <td style="text-align:right">Validation Tag:</td>
-                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.ANIMAL_ID" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td><input ng-disabled="true" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
                             </tr>
                             <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Steer'">
                                 <td style="text-align:right">Sellar name:</td>
-                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.SELLER" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td>
+                                    <input ng-change="home.alphaNumericCheck(home.scramblerDetails.animal.SELLER, 'SellarSteer')" ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.SELLER" type="text" class="form-control" style="padding-left:20px; padding-right:100px" />
+                                    <div style="color:red" ng-show="!home.SellarSteerCorrect">Cost of hifer should be only numbers</div>
+                                </td>
                             </tr>
                             <tr ng-show="home.scramblerDetails.animal.ANIMAL_TYPE == 'Steer'">
                                 <td style="text-align:right">Purchase Date:</td>
@@ -138,14 +182,16 @@
                             </tr>
                             <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Steer'">
                                 <td style="text-align:right">Cost:</td>
-                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.ANIMAL_ID" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td>
+                                    <input ng-change="home.onlyNumbers(home.scramblerDetails.animal.COST_OF_HEIFER, 'steerCost')" ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.COST_OF_HEIFER" type="text" class="form-control" style="padding-left:20px; padding-right:100px" />
+                                    <div style="color:red" ng-show="!home.steerCostCorrect">Cost of Steerr should be only numbers</div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-
     </div>
 
     <div class="panel panel-default panel-primary">

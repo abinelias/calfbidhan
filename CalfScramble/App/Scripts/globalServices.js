@@ -81,7 +81,6 @@ function globalServices($http, $q, $localStorage, $sessionStorage) {
 
     function DeleteExpense(id) {
         var deferred = $q.defer();
-        alert(id);
         deferred.resolve($http.get(baseWMUrl + 'DeleteExpense?id=' + id).then(function (result) {
             return result;
         }));
@@ -170,7 +169,6 @@ function globalServices($http, $q, $localStorage, $sessionStorage) {
         payload.append("month", $localStorage.month);
         payload.append("type", Type);
         payload.append("cuid", $localStorage.loggedInUserId);
-        alert(Type);
         var deferred = $q.defer();
         deferred.resolve($http({
             url: baseWMUrl + 'UploadEssay', data: payload, method: "POST", headers: { 'Content-Type': undefined }

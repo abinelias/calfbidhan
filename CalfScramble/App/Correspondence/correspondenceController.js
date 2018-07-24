@@ -39,14 +39,12 @@
             console.log(f.type);
             if (type == "photo1" || type == "photo2" || type == "photo3") {
                 if (f.type == "image/jpeg" || f.type == "image/png") {
-                    alert("Image Ok");
                     isUploadOk = true;
                 }                
             }
             else if (type == "corres") {
                 var res = f.name.split("."); 
                 if (res[1] == "docx" || res[1] == "pdf" || res[1] == "txt") {
-                    alert("corres Ok");
                     isUploadOk = true;
                 }
             }

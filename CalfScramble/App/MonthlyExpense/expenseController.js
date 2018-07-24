@@ -90,7 +90,7 @@
         }
 
         function saveExpense() {
-            if (vm.unitCostCorrect || vm.expenseTypeCorrect) {
+            if (vm.unitCostCorrect && vm.expenseTypeCorrect && vm.selectedQuanity > 0) {
                 var data = {};
                 data.expensetype = vm.expenseType;
                 data.quantity = vm.selectedQuanity;

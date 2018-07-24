@@ -20,10 +20,30 @@
         vm.tShirtSize = [{ "Id": 0, "Name": "Select T-Shirt Size" }, { "Id": 1, "Name": "S" }, { "Id": 2, "Name": "M" }, { "Id": 3, "Name": "L" }, { "Id": 4, "Name": "XL" }, { "Id": 5, "Name": "XXL" }];
         vm.animalDisable = false;
 
+        vm.addressCorrect = true;
+        vm.cityCorrect = true;
+        vm.zipCorrect = true;
+        vm.emailCorrect = true;
+        vm.animalNameCorrect = true;
+        vm.registerNoCorrect = true;
+        vm.SirNameCorrect = true;
+        vm.registerSirCorrect = true;
+        vm.damNameCorrect = true;
+        vm.registryDamCorrect = true;
+        vm.animalIdentificationCorrect = true;
+        vm.sellarCorrect = true;
+        vm.hiferCostCorrect = true;
+        vm.steerCostCorrect = true;
+        vm.SellarSteerCorrect = true;
+
         // Functions defined on vm
         vm.GetScramblerDetails = GetScramblerDetails;
         vm.EditInfo = EditInfo;
         vm.Save = Save;
+        vm.alphaNumericCheck = alphaNumericCheck;
+        vm.onlyNumbers = onlyNumbers;
+        vm.alphaNumericWithSpaceCheck = alphaNumericWithSpaceCheck;
+        vm.validateEmail = validateEmail;
 
         GetScramblerDetails();
 
@@ -35,9 +55,139 @@
             $localStorage.year = vm.yearDetails = res.data;
         });
 
+        function alphaNumericWithSpaceCheck(val, type) {
+            var exp = /^[a-z\d\-_\s]+$/i;
+            if (exp.test(val)) {
+                if (type == 'address') {
+                    vm.addressCorrect = true;
+                }
+                return true;
+            }
+            else {
+                if (type == 'address') {
+                    vm.addressCorrect = false;
+                }
+                return false;
+            }
+        }
+
+        function alphaNumericCheck(val, type) {
+            var exp = /^[a-z0-9]+$/i;
+            if (exp.test(val)) {
+                if (type == 'city') {
+                    vm.cityCorrect = true;
+                }
+                else if (type == 'animalName') {
+                    vm.animalNameCorrect = true;
+                }
+                else if (type == 'registryNumber') {
+                    vm.registerNoCorrect = true;
+                }
+                else if (type == 'nameOfSire') {
+                    vm.SirNameCorrect = true;
+                }
+                else if (type == 'SireRegisterNo') {
+                    vm.registerSirCorrect = true;
+                }
+                else if (type == 'nameOfDam') {
+                    vm.damNameCorrect = true;
+                }
+                else if (type == 'DamRegisterNo') {
+                    vm.registryDamCorrect = true;
+                }
+                else if (type == 'animalIdentification') {
+                    vm.animalIdentificationCorrect = true;
+                }
+                else if (type == 'Sellar') {
+                    vm.sellarCorrect = true;
+                }
+                else if (type == 'hiferCost') {
+                    vm.hiferCostCorrect = true;
+                }
+                else if (type == 'SellarSteer') {
+                    vm.SellarSteerCorrect = true;
+                }
+                return true;
+            }
+            else {
+                if (type == 'city') {
+                    vm.cityCorrect = false;
+                }
+                else if (type == 'animalName') {
+                    vm.animalNameCorrect = false;
+                }
+                else if (type == 'registryNumber') {
+                    vm.registerNoCorrect = false;
+                }
+                else if (type == 'nameOfSire') {
+                    vm.SirNameCorrect = false;
+                }
+                else if (type == 'SireRegisterNo') {
+                    vm.registerSirCorrect = false;
+                }
+                else if (type == 'nameOfDam') {
+                    vm.damNameCorrect = false;
+                }
+                else if (type == 'DamRegisterNo') {
+                    vm.registryDamCorrect = false;
+                }
+                else if (type == 'animalIdentification') {
+                    vm.animalIdentificationCorrect = false;
+                }
+                else if (type == 'Sellar') {
+                    vm.sellarCorrect = false;
+                }
+                else if (type == 'SellarSteer') {
+                    vm.SellarSteerCorrect = false;
+                }
+                return false;
+            }
+        }
+
+        function onlyNumbers(val, type) {
+            var reg = /^\d+$/;
+            if (reg.test(val)) {
+                if (type == 'zip') {
+                    vm.zipCorrect = true;
+                } 
+                else if (type == 'hiferCost') {
+                    vm.hiferCostCorrect = true;
+                }
+                else if (type == 'steerCost') {
+                    vm.steerCostCorrect = true;
+                }
+                return true;
+            }
+            else {
+                if (type == 'zip') {
+                    vm.zipCorrect = false;
+                }
+                else if (type == 'hiferCost') {
+                    vm.hiferCostCorrect = false;
+                }
+                else if (type == 'steerCost') {
+                    vm.steerCostCorrect = false;
+                }
+                return false;
+            }
+        }
+
+        function validateEmail() {
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            if (re.test(vm.scramblerDetails.address.EMAIL_SECOND.toLowerCase())) {
+                vm.emailCorrect = true;
+                return true;
+            }
+            else {
+                vm.emailCorrect = false;
+                return false;
+            }
+        }
+
         function GetScramblerDetails() {
             globalServices.GetScramblerDetails().then(function (res) {
                 vm.scramblerDetails = res.data;
+                console.log(vm.scramblerDetails);
                 if (vm.scramblerDetails.animal.ANIMAL_ID > 0)
                     vm.animalDisable = true;
             });
@@ -48,17 +198,23 @@
         }
 
         function Save() {
-            console.log(vm.scramblerDetails);
-            vm.scramblerDetails.animal.CUSTOMER_ID = vm.scramblerDetails.address.CUSTOMER_ID
-            globalServices.saveCustomer(vm.scramblerDetails).then(function (res) {
-                if (res.data) {
-                    globalServices.GetScramblerDetails().then(function (res) {
-                        vm.scramblerDetails = res.data;
-                        if (vm.scramblerDetails.animal.ANIMAL_ID > 0)
-                            vm.animalDisable = true;
-                    });
-                }
-            });
-        }        
+            if (vm.addressCorrect && vm.cityCorrect && vm.zipCorrect && vm.emailCorrect && vm.animalNameCorrect &&
+                vm.registerNoCorrect && vm.SirNameCorrect && vm.registerSirCorrect && vm.damNameCorrect && vm.registryDamCorrect &&
+                vm.animalIdentificationCorrect && vm.sellarCorrect && vm.hiferCostCorrect && vm.steerCostCorrect && vm.SellarSteerCorrect) {
+                vm.scramblerDetails.animal.CUSTOMER_ID = vm.scramblerDetails.address.CUSTOMER_ID
+                globalServices.saveCustomer(vm.scramblerDetails).then(function (res) {
+                    if (res.data) {
+                        globalServices.GetScramblerDetails().then(function (res) {
+                            vm.scramblerDetails = res.data;
+                            if (vm.scramblerDetails.animal.ANIMAL_ID > 0)
+                                vm.animalDisable = true;
+                        });
+                    }
+                });
+            }
+            else {
+                alert("Please enter correct the values")
+            }
+        }
     }
 })();

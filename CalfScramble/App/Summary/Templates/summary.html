@@ -26,27 +26,27 @@
                     <tr>
                         <td>Initial Assessment</td>
                         <td ng-click="summary.downloadCoress('initass')" style="color:goldenrod">{{summary.FullDoc.essay.ASSESSMENT_INIT_FILE_NAME}}</td>
-                        <td>{{summary.FullDoc.essay.ASSESSMENT_INIT_SUBMIT_DATE}}</td>
+                        <td ng-bind="summary.formatDaate(summary.FullDoc.essay.ASSESSMENT_INIT_SUBMIT_DATE)"></td>
                     </tr>
                     <tr>
                         <td>Monthly Ledgers	</td>
                         <td ng-click="summary.downloadCoress('monledger')" style="color:goldenrod">{{summary.FullDoc.essay.LEDGER_MONTH_FILE_NAME}}</td>
-                        <td>{{summary.FullDoc.essay.LEDGER_MONTH_SUBMIT_DATE}}</td>
+                        <td ng-bind="summary.formatDaate(summary.FullDoc.essay.LEDGER_MONTH_SUBMIT_DATE)"></td>
                     </tr>
                     <tr>
                         <td>Final Assessment</td>
                         <td ng-click="summary.downloadCoress('finass')" style="color:goldenrod">{{summary.FullDoc.essay.ASSESSMENT_FINAL_FILE_NAME}}</td>
-                        <td>{{summary.FullDoc.essay.ASSESSMENT_FINAL_SUBMIT_DATE}}</td>
+                        <td ng-bind="summary.formatDaate(summary.FullDoc.essay.ASSESSMENT_FINAL_SUBMIT_DATE)"></td>
                     </tr>
                     <tr>
                         <td>Breed Essay</td>
                         <td ng-click="summary.downloadCoress('breedessay')" style="color:goldenrod">{{summary.FullDoc.essay.BREED_FILE_NAME}}</td>
-                        <td>{{summary.FullDoc.essay.BREED_RPT_SUBMIT_DATE}}</td>
+                        <td ng-bind="summary.formatDaate(summary.FullDoc.essay.BREED_RPT_SUBMIT_DATE)"></td>
                     </tr>
                     <tr>
                         <td>Year End Essay</td>
                         <td ng-click="summary.downloadCoress('yearendessay')" style="color:goldenrod">{{summary.FullDoc.essay.YREND_FILE_NAME}}</td>
-                        <td>{{summary.FullDoc.essay.YREND_RPT_SUBMIT_DATE}}</td>
+                        <td ng-bind="summary.formatDaate(summary.FullDoc.essay.YREND_RPT_SUBMIT_DATE)"></td>
                     </tr>
                 </tbody>
             </table>
@@ -71,9 +71,9 @@
                         <td ng-if="summary.CorresSubmitDate.length == 0"></td>
                         <td ng-if="summary.CorresSubmitDate.length > 0">Yes</td>
                         <td ng-if="summary.CorresSubmitDate.length == 0"></td>
-                        <td>{{summary.CorresSubmitDate}}</td>
-                        <td  ng-click="summary.downloadFile('corres')" style="color:goldenrod">{{summary.corresFileName}}</td>
-                        <td>{{summary.CorresSubmitDate}}</td>
+                        <td ng-bind="summary.formatDaate(summary.CorresSubmitDate)"></td>
+                        <td ng-click="summary.downloadFile('corres')" style="color:goldenrod">{{summary.corresFileName}}</td>
+                        <td ng-bind="summary.formatDaate(summary.CorresSubmitDate)"></td>
                     </tr>
                 </tbody>
             </table>
@@ -93,8 +93,8 @@
                 <tbody>
                     <tr ng-repeat="photo in summary.FullDoc.monthly">
                         <td ng-if="photo.COMMENTS == 'photo1' || photo.COMMENTS == 'photo2' ||photo.COMMENTS == 'photo3'">{{summary.selectedMonth}}</td>
-                        <td ng-click="summary.downloadFile(photo.COMMENTS)" style="color:goldenrod">{{photo.PHOTO_FILE_NAME}}</td>
-                        <td>{{photo.PHOTO_SUBMIT_DATE}}</td>
+                        <td ng-if="photo.COMMENTS == 'photo1' || photo.COMMENTS == 'photo2' ||photo.COMMENTS == 'photo3'" ng-click="summary.downloadFile(photo.COMMENTS)" style="color:goldenrod">{{photo.PHOTO_FILE_NAME}}</td>
+                        <td ng-if="photo.COMMENTS == 'photo1' || photo.COMMENTS == 'photo2' ||photo.COMMENTS == 'photo3'" ng-bind="summary.formatDaate(photo.PHOTO_SUBMIT_DATE)"></td>
                     </tr>
                 </tbody>
             </table>
