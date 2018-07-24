@@ -30,7 +30,7 @@
                     globalServices.GetDeadLineDate().then(function (res) {
                         vm.DeadlineDate = res.data;
                         var date1 = new Date();
-                        var date2 = new Date("07/22/2018");
+                        var date2 = new Date(vm.DeadlineDate);
                         var timeDiff = date2.getTime() - date1.getTime();
                         vm.diffDays =  parseInt(Math.ceil(timeDiff / (1000 * 3600 * 24)));
                         getEssayDetails();

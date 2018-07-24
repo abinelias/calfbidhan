@@ -12,7 +12,7 @@
     <div class="panel panel-default">
         <div class="panel-heading" style="font-size: 15px;padding: 11px;color: cornflowerblue;">Business Plan</div>
         <div class="panel-body">
-            <div style="color:red">Initial Assessment Deadline: Month DD HH:MM A/PM</div>
+            <div style="color:red">Initial Assessment Deadline: {{essay.DeadlineDate}}</div>
             <div class="row" style="margin-top: 15px;">
                 <div class="col-xs-3 col-md-3 col-sm-3">
                     <label style="float:left;color: darkgoldenrod;float: left;margin-right: 60px;">Initial Assessment:</label>
@@ -26,7 +26,7 @@
                     <button ng-show="essay.EssayInfo.ASSESSMENT_INIT_BLOB.length > 0 && essay.diffDays > 0" ng-click="essay.DeleteEssayData('initass')" class="btn btn-success">Delete</button>
                 </div>
             </div>
-            <div style="color:red">Monthly Ledger & Final Assessment Deadline: Month DD HH:MM A/PM</div>
+            <div style="color:red">Monthly Ledger & Final Assessment Deadline: {{essay.DeadlineDate}}</div>
             <div class="row" style="margin-top: 15px;">
                 <div class="col-xs-3 col-md-3 col-sm-3">
                     <label style="float:left;color: darkgoldenrod;float: left;margin-right: 60px;">Monthly Ledger:</label>
@@ -58,7 +58,7 @@
     <div class="panel panel-default">
         <div class="panel-heading" style="font-size: 15px;padding: 11px;color: cornflowerblue;">Essays</div>
         <div class="panel-body">
-            <div style="color:red">Initial Assessment Deadline: Month DD HH:MM A/PM</div>
+            <div style="color:red">Initial Assessment Deadline: {{essay.DeadlineDate}}</div>
             <div class="row" style="margin-top: 15px;">
                 <div class="col-xs-3 col-md-3 col-sm-3">
                     <label style="float:left;color: darkgoldenrod;float: left;margin-right: 60px;">Breed Essay:</label>
