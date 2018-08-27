@@ -35,6 +35,8 @@
         vm.hiferCostCorrect = true;
         vm.steerCostCorrect = true;
         vm.SellarSteerCorrect = true;
+        vm.dateOfBirthCorrect = true;
+        vm.purchaseDateCorrect = true;
 
         // Functions defined on vm
         vm.GetScramblerDetails = GetScramblerDetails;
@@ -44,6 +46,7 @@
         vm.onlyNumbers = onlyNumbers;
         vm.alphaNumericWithSpaceCheck = alphaNumericWithSpaceCheck;
         vm.validateEmail = validateEmail;
+        vm.dateValidation = dateValidation;
 
         GetScramblerDetails();
 
@@ -70,9 +73,64 @@
                 return false;
             }
         }
+        vm.dateOfBirthCorrect = true;
+        vm.purchaseDateCorrect = true;
+        function dateValidation(date, type) {
+            var newchar = '-'
+            var newDate = date.split('/').join(newchar);
+            var dateParse = newDate.split('-');
+            if (dateParse.length == 3) {
+                if (dateParse[0] > 0 && dateParse[0] < 13) {
+                    if (dateParse[1] > 0 && dateParse[1] < 31) {
+                        if (dateParse[2] > 1900) {
+
+                            if (type == 'purchaseDateHifer') {
+                                vm.purchaseDateCorrect = true;
+                            }
+                            else if (type == 'dateOfBirth') {
+                                vm.dateOfBirthCorrect = true;
+                            }
+                        }
+                        else {
+                            if (type == 'purchaseDateHifer') {
+                                vm.purchaseDateCorrect = false;
+                            }
+                            else if (type == 'dateOfBirth') {
+                                vm.dateOfBirthCorrect = false;
+                            }
+                        }
+                    }
+                    else {
+                        if (type == 'purchaseDateHifer') {
+                            vm.purchaseDateCorrect = false;
+                        }
+                        else if (type == 'dateOfBirth') {
+                            vm.dateOfBirthCorrect = false;
+                        }
+                    }
+                }
+                else {
+                    if (type == 'purchaseDateHifer') {
+                        vm.purchaseDateCorrect = false;
+                    }
+                    else if (type == 'dateOfBirth') {
+                        vm.dateOfBirthCorrect = false;
+                    }
+                }
+            }
+            else {
+                if (type == 'purchaseDateHifer') {
+                    vm.purchaseDateCorrect = false;
+                }
+                else if (type == 'dateOfBirth') {
+                    vm.dateOfBirthCorrect = false;
+                }
+            }
+        }
+
 
         function alphaNumericCheck(val, type) {
-            var exp = /^[a-z0-9]+$/i;
+            var exp = /^[a-z\d\-_\s]+$/i;// /^[a-z0-9]+$/i;
             if (exp.test(val)) {
                 if (type == 'city') {
                     vm.cityCorrect = true;
@@ -184,12 +242,21 @@
             }
         }
 
+        function formatDate(val) {
+            var res = val.split("T");
+            return res[0];
+        }
+
         function GetScramblerDetails() {
             globalServices.GetScramblerDetails().then(function (res) {
                 vm.scramblerDetails = res.data;
                 console.log(vm.scramblerDetails);
-                if (vm.scramblerDetails.animal.ANIMAL_ID > 0)
+                if (vm.scramblerDetails.animal.ANIMAL_ID > 0) {
                     vm.animalDisable = true;
+                    console.log(vm.scramblerDetails.animal);
+                    vm.scramblerDetails.animal.DATE_OF_BIRTH = formatDate(vm.scramblerDetails.animal.DATE_OF_BIRTH);
+                    vm.scramblerDetails.animal.PURCHASE_DATE = formatDate(vm.scramblerDetails.animal.PURCHASE_DATE);
+                }
             });
         }
 

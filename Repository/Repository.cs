@@ -100,39 +100,15 @@ namespace Repository
                 Stream stream = files.InputStream;
                 BinaryReader reader = new BinaryReader(stream);
                 byte[] imgByte = reader.ReadBytes((int)stream.Length);
-                var file = cs.clfs_winner_monthly_documents.Where(x => x.HEADER_ID == header.HEADER_ID&&x.COMMENTS==type).FirstOrDefault();
-                if (file == null)
+                if (type == "corres")
                 {
-                    switch (type)
-                    {
-                        case "corres":
-                            cs.clfs_winner_monthly_documents.Add(new clfs_winner_monthly_documents {COMMENTS=type, HEADER_ID = header.HEADER_ID, CORRESPONDENCE = imgByte, CORR_FILE_NAME = files.FileName, CORR_FILE_TYPE = files.ContentType, CORR_SUBMIT_DATE = DateTime.Now });
-                            break;
-                        case "photo1":
-                        case "photo2":
-                        case "photo3":
-                            cs.clfs_winner_monthly_documents.Add(new clfs_winner_monthly_documents { COMMENTS = type, HEADER_ID = header.HEADER_ID, PHOTO = imgByte, PHOTO_FILE_NAME = files.FileName, PHOTO_FILE_TYPE = files.ContentType, PHOTO_SUBMIT_DATE = DateTime.Now });
-                            break;
-
-                    }
+                    cs.clfs_winner_monthly_documents.Add(new clfs_winner_monthly_documents { HEADER_ID = header.HEADER_ID, CORRESPONDENCE = imgByte, CORR_FILE_NAME = files.FileName, CORR_FILE_TYPE = GetFileExtension(files.FileName), CORR_SUBMIT_DATE = DateTime.Now });
+                    cs.clfs_winner_monthly_documents.Add(new clfs_winner_monthly_documents { HEADER_ID = header.HEADER_ID, CORRESPONDENCE = imgByte, CORR_FILE_NAME = files.FileName, CORR_FILE_TYPE = GetFileExtension(files.FileName), CORR_SUBMIT_DATE = DateTime.Now });
                 }
                 else
                 {
-                    switch (type)
-                    {
-                        case "corres":
+                    cs.clfs_winner_monthly_documents.Add(new clfs_winner_monthly_documents { HEADER_ID = header.HEADER_ID, PHOTO = imgByte, PHOTO_FILE_NAME = files.FileName, PHOTO_FILE_TYPE = GetFileExtension(files.FileName), PHOTO_SUBMIT_DATE = DateTime.Now });
 
-                            file.CORRESPONDENCE = imgByte;
-                            file.CORR_FILE_TYPE = files.ContentType;
-                            file.CORR_FILE_NAME = files.FileName;
-                            break;
-                        case "photo1":
-
-                            file.PHOTO = imgByte;
-                            file.PHOTO_FILE_TYPE = files.ContentType;
-                            file.PHOTO_FILE_NAME = files.FileName;
-                            break;
-                    }
                     
                 }
                 cs.SaveChanges();
@@ -230,7 +206,7 @@ namespace Repository
                             ///file.ASSESSMENT_INIT = files.FileName;
                             file.ASSESSMENT_INIT_BLOB = imgByte;
                             file.ASSESSMENT_INIT_FILE_NAME = files.FileName;
-                            file.ASSESSMENT_INIT_FILE_TYPE = files.ContentType;
+                            file.ASSESSMENT_INIT_FILE_TYPE = GetFileExtension(files.FileName);/// files.ContentType;
                             file.ASSESSMENT_INIT_SUBMIT_DATE = DateTime.Now;
                             break;
 
@@ -238,21 +214,21 @@ namespace Repository
                             //// file.ASSESSMENT_FINAL = files.FileName;
                             file.ASSESSMENT_FINAL_BLOB = imgByte;
                             file.ASSESSMENT_FINAL_FILE_NAME = files.FileName;
-                            file.ASSESSMENT_FINAL_FILE_TYPE = files.ContentType;
+                            file.ASSESSMENT_FINAL_FILE_TYPE = GetFileExtension(files.FileName);/// files.ContentType;
                             file.ASSESSMENT_FINAL_SUBMIT_DATE = DateTime.Now;
                             break;
 
                         case "monledger":
                             file.LEDGER_MONTH_BLOB = imgByte;
                             file.LEDGER_MONTH_FILE_NAME = files.FileName;
-                            file.LEDGER_MONTH_FILE_TYPE = files.ContentType;
+                            file.LEDGER_MONTH_FILE_TYPE = GetFileExtension(files.FileName);/// files.ContentType;
                             file.LEDGER_MONTH_SUBMIT_DATE = DateTime.Now;
                             break;
                         case "breedessay":
                             // file.BREED_ESSAY = files.FileName;
                             file.BREED_RPT_BLOB = imgByte;
                             file.BREED_FILE_NAME = files.FileName;
-                            file.BREED_FILE_TYPE = files.ContentType;
+                            file.BREED_FILE_TYPE = GetFileExtension(files.FileName);/// files.ContentType;
                             file.BREED_RPT_SUBMIT_DATE = DateTime.Now;
                             break;
 
@@ -260,7 +236,7 @@ namespace Repository
                             // file.YEAR_END_ESSAY = files.FileName;
                             file.YEAR_END_RPT_BLOB = imgByte;
                             file.YREND_FILE_NAME = files.FileName;
-                            file.YREND_FILE_TYPE = files.ContentType;
+                            file.YREND_FILE_TYPE = GetFileExtension(files.FileName); //s.ContentType;
                             file.YREND_RPT_SUBMIT_DATE = DateTime.Now;
                             break;
 
@@ -274,13 +250,37 @@ namespace Repository
             }
             
         }
+        private string GetFileExtension(string fileName)
+        {
+            return Path.GetExtension(fileName);
+        }
         public clfs_winner_monthly_documents GetAttachmentByHeaderId(int id, string month, int year,string type)
         {
             using (CalfScramblerEntities cs = new CalfScramblerEntities())
             {
                 var header = cs.clfs_winner_monthly_headers.Where(x => x.EXHIBITOR_ID == id && x.REPORTING_MONTH == month && x.SHOW_YEAR == year).FirstOrDefault();
+                if( type=="corres" )
 
-                return cs.clfs_winner_monthly_documents.Where(x => x.HEADER_ID == header.HEADER_ID&& x.COMMENTS== type).FirstOrDefault();
+                        return cs.clfs_winner_monthly_documents.Where(x => x.HEADER_ID == header.HEADER_ID && x.CORR_FILE_NAME !=null).FirstOrDefault();
+                else
+                {
+                    var image = cs.clfs_winner_monthly_documents.Where(x => x.HEADER_ID == header.HEADER_ID && x.PHOTO_FILE_NAME != null).ToArray();
+                    if (type == "photo1")
+                    {
+                        return image[0];
+                    }
+                    else if (type == "photo2")
+                    {
+                        return image[1];
+
+                    }
+                    else
+                    {
+                        return image[2];
+
+                    }
+
+                }
             }
         }
 
@@ -321,7 +321,26 @@ namespace Repository
                 {
                     return null;
                 }
-                return cs.clfs_winner_monthly_documents.Where(x => x.HEADER_ID == header.HEADER_ID ).ToList();
+
+        
+                
+                var data= cs.clfs_winner_monthly_documents.Where(x => x.HEADER_ID == header.HEADER_ID ).ToList();
+                int i = 0;
+                foreach (var d in data)
+                {
+                    if (d.CORR_FILE_NAME != null)
+                    {
+                        d.COMMENTS = "corres";
+
+                    }
+                    else
+                    {
+                        i++;
+                        d.COMMENTS = "photo" + i;
+                    }
+                }
+                return data;
+
             }
         }
         public bool DeleteDocById(int id)
@@ -345,6 +364,7 @@ namespace Repository
                 cust.LAST_NAME = cu.LAST_NAME;
                 cust.LAST_UPDATE_DATE = DateTime.Now;
                 var address = cs.addresses.Where(x => x.ADDRESS_ID == addr.ADDRESS_ID).FirstOrDefault();
+                address.ADDRESS1 = addr.ADDRESS1;
                 address.CITY = addr.CITY;
                 address.COUNTRY = addr.COUNTRY;
                 address.CREATED_BY = addr.CREATED_BY;
@@ -355,7 +375,7 @@ namespace Repository
                 address.POSTAL = addr.POSTAL;
                 address.STATE = addr.STATE;
                 address.STATUS = addr.STATUS;
-                if (an.ANIMAL_ID == 0)
+                if (an.ANIMAL_ID == 0&& an.ANIMAL_TYPE !=null)
                 {
                     if (an.ANIMAL_TYPE.Equals("Steer", StringComparison.InvariantCultureIgnoreCase))
                     {

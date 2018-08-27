@@ -27,6 +27,8 @@
                     vm.yearDetails = res.data;
                     globalServices.GetAllDocuments(vm.yearDetails, vm.selectedMonth).then(function (res) {
                         vm.FullDoc = res.data;
+                        console.log(vm.FullDoc);
+
                         if (vm.FullDoc.monthly != null) {
                             for (var i = 0; i < vm.FullDoc.monthly.length; i++) {
                                 if (vm.FullDoc.monthly[i].COMMENTS == "corres") {
@@ -45,7 +47,6 @@
             var d = new Date(val); 
             var re = d.toString();
             var res = re.split("GMT");
-            console.log(res[0]);
             return res[0];
         }
 

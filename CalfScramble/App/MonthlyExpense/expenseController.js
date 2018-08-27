@@ -44,7 +44,7 @@
 
         function unitCostCheck() {
             var reg = /^\d+$/;
-            if (reg.test(vm.unitCost)) {
+            if (vm.unitCost !=null && reg.test(vm.unitCost)) {
                 vm.unitCostCorrect = true;
                 return true;
             }
@@ -90,7 +90,7 @@
         }
 
         function saveExpense() {
-            if (vm.unitCostCorrect && vm.expenseTypeCorrect && vm.selectedQuanity > 0) {
+            if (vm.unitCost != null && vm.expenseType !=null && vm.unitCostCorrect && vm.expenseTypeCorrect && vm.selectedQuanity > 0) {
                 var data = {};
                 data.expensetype = vm.expenseType;
                 data.quantity = vm.selectedQuanity;

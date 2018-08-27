@@ -103,7 +103,8 @@
                             <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Date of Birth:</td>
                                 <td>
-                                    <input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.DATE_OF_BIRTH" type="text" class="form-control" style="padding-left:20px; padding-right:100px" />
+                                    <input ng-disabled="home.animalDisable" ng-blur="home.dateValidation(home.scramblerDetails.animal.DATE_OF_BIRTH, 'dateOfBirth')" ng-model="home.scramblerDetails.animal.DATE_OF_BIRTH" type="text" class="form-control" style="padding-left:20px; padding-right:100px" />
+                                    <div style="color:red" ng-show="!home.dateOfBirthCorrect">Please enter a valid date</div>
                                 </td>
                             </tr>
                             <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
@@ -156,7 +157,10 @@
                             </tr>
                             <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Purchase Date:</td>
-                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.PURCHASE_DATE" type="text" class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td>
+                                    <input ng-disabled="home.animalDisable" ng-blur="home.dateValidation(home.scramblerDetails.animal.PURCHASE_DATE, 'purchaseDateHifer')" ng-model="home.scramblerDetails.animal.PURCHASE_DATE" type="text" class="form-control" style="padding-left:20px; padding-right:100px" />
+                                    <div style="color:red" ng-show="!home.purchaseDateCorrect">Please enter a valid date</div>
+                                </td>
                             </tr>
                             <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Heifer'">
                                 <td style="text-align:right">Total Animal Cost:</td>
@@ -178,7 +182,10 @@
                             </tr>
                             <tr ng-show="home.scramblerDetails.animal.ANIMAL_TYPE == 'Steer'">
                                 <td style="text-align:right">Purchase Date:</td>
-                                <td><input ng-disabled="home.animalDisable" ng-model="home.scramblerDetails.animal.PURCHASE_DATE" type='text' class="form-control" style="padding-left:20px; padding-right:100px" /></td>
+                                <td>
+                                    <input ng-disabled="home.animalDisable" ng-blur="home.dateValidation(home.scramblerDetails.animal.PURCHASE_DATE, 'purchaseDateSteer')" ng-model="home.scramblerDetails.animal.PURCHASE_DATE" type='text' class="form-control" style="padding-left:20px; padding-right:100px" />
+                                    <div style="color:red" ng-show="!home.purchaseDateCorrect">Please enter a valid date</div>
+                                </td>
                             </tr>
                             <tr ng-if="home.scramblerDetails.animal.ANIMAL_TYPE == 'Steer'">
                                 <td style="text-align:right">Cost:</td>

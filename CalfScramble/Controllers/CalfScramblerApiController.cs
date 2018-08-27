@@ -149,8 +149,8 @@ namespace CalfScramble.Controllers
         [HttpGet]
         public string GetCurrentMonth()
         {
-            string month = WebConfigurationManager.AppSettings["Month"];
-            return month;
+            //string month = WebConfigurationManager.AppSettings["Month"];
+            return ReportingMonth();
         }
 
         [ActionName("GetCurrentYear")]
@@ -235,8 +235,122 @@ namespace CalfScramble.Controllers
         [HttpGet]
         public Documents GetAllDocs(int id, string month, int year)
         {
-            return new Documents { essay = db.GetEssayFile(id, month, year) ,monthly= db.GetAllAttachmentByHeaderId(id, month, year) };
-    
+            return new Documents { essay = db.GetEssayFile(id, month, year), monthly = db.GetAllAttachmentByHeaderId(id, month, year) };
+
+
         }
+
+        public Int32 ReportingMonthNumber()
+        {
+            //<add key="MonthlyReportingDate" value="11" />
+            //Would provide such as for May = 5
+            try
+            {
+                string reportMonthNum = System.Configuration.ConfigurationManager.AppSettings["MonthlyReportingDate"].ToString();
+                Int32 returnMonth = 0;
+
+                if (DateTime.Now.Day >= 1 && DateTime.Now.Day < Convert.ToInt32(reportMonthNum))
+                {
+                    returnMonth = DateTime.Now.AddMonths(-1).Month;
+                }
+                else
+                {
+                    returnMonth = DateTime.Now.Month;
+                }
+                return returnMonth;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex.InnerException);
+            }
+        }
+
+        //DateTime dtDate = new DateTime(2000, iMonthNo, 1);
+        //string sMonthName = dtDate.ToString("MMM");
+        //string sMonthFullName = dtDate.ToString("MMMM");
+
+        public string ReportingMonth()
+        {
+            string reportMonth = "";
+            Int32 showYear = 2018;
+
+            //Would provide MAY for ReportingMonthNumber() = 5
+            try
+            {
+                DateTime dtDate = new DateTime(showYear, ReportingMonthNumber(), DateTime.Now.Day);
+                reportMonth = dtDate.ToString("MMMM").ToUpper();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex.InnerException);
+            }
+            return reportMonth;
+        }
+
+        public string NextReportingMonth()
+        {
+            string reportMonth = "";
+            Int32 showYear = 2018;
+            try
+            {
+                DateTime dtDate = new DateTime(showYear, ReportingMonthNumber() + 1, DateTime.Now.Day);
+                reportMonth = dtDate.ToString("MMMM").ToUpper();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex.InnerException);
+            }
+            return reportMonth;
+        }
+
+        //Me.lblReportingCycle.Text = "Reporting Cycle:  Enter from " & 
+        //My.Application.Engine.ReportingMonthFullDate.ToString("MMMM dd") & " to " 
+        // & My.Application.Engine.NextReportingMonthFullDate.ToString("MMMM dd")
+
+        //Reporting Cycle: Enter from May 11 to June 10
+
+        //DateTime dtDate = new DateTime(2000, iMonthNo, 1);
+        //string sMonthName = dtDate.ToString("MMM");
+        //string sMonthFullName = dtDate.ToString("MMMM");
+
+        //ReportingMonthFullDate
+        public string BeginReportingMonth()
+        {
+            string rptCycle = "";
+            Int32 showYear = 2018;
+            string repMonthDay = System.Configuration.ConfigurationManager.AppSettings["MonthlyReportingDate"].ToString();
+            try
+            {
+                DateTime dtDate = new DateTime(showYear, ReportingMonthNumber(), Convert.ToInt32(repMonthDay));
+                rptCycle = dtDate.ToString("MMMM dd");
+
+                return rptCycle;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex.InnerException);
+            }
+        }
+
+
+        //Would provide June 10
+        public string EndReportingMonth()
+        {
+            string rptCycle = "";
+            Int32 showYear = 2018;
+            string repMonthDay = System.Configuration.ConfigurationManager.AppSettings["MonthlyReportingDate"].ToString();
+            try
+            {
+                DateTime dtDate = new DateTime(showYear, ReportingMonthNumber() + 1, (Convert.ToInt32(repMonthDay) - 1));
+                rptCycle = dtDate.ToString("MMMM dd");
+
+                return rptCycle;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex.InnerException);
+            }
+        }
+
     }
 }

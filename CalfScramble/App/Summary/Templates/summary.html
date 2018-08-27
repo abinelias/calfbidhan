@@ -23,27 +23,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr ng-if="summary.FullDoc.essay.ASSESSMENT_INIT_FILE_NAME">
                         <td>Initial Assessment</td>
                         <td ng-click="summary.downloadCoress('initass')" style="color:goldenrod">{{summary.FullDoc.essay.ASSESSMENT_INIT_FILE_NAME}}</td>
                         <td ng-bind="summary.formatDaate(summary.FullDoc.essay.ASSESSMENT_INIT_SUBMIT_DATE)"></td>
                     </tr>
-                    <tr>
+                    <tr ng-if="summary.FullDoc.essay.LEDGER_MONTH_FILE_NAME">
                         <td>Monthly Ledgers	</td>
                         <td ng-click="summary.downloadCoress('monledger')" style="color:goldenrod">{{summary.FullDoc.essay.LEDGER_MONTH_FILE_NAME}}</td>
                         <td ng-bind="summary.formatDaate(summary.FullDoc.essay.LEDGER_MONTH_SUBMIT_DATE)"></td>
                     </tr>
-                    <tr>
+                    <tr ng-if="summary.FullDoc.essay.ASSESSMENT_FINAL_FILE_NAME">
                         <td>Final Assessment</td>
                         <td ng-click="summary.downloadCoress('finass')" style="color:goldenrod">{{summary.FullDoc.essay.ASSESSMENT_FINAL_FILE_NAME}}</td>
                         <td ng-bind="summary.formatDaate(summary.FullDoc.essay.ASSESSMENT_FINAL_SUBMIT_DATE)"></td>
                     </tr>
-                    <tr>
+                    <tr ng-if="summary.FullDoc.essay.BREED_FILE_NAME">
                         <td>Breed Essay</td>
                         <td ng-click="summary.downloadCoress('breedessay')" style="color:goldenrod">{{summary.FullDoc.essay.BREED_FILE_NAME}}</td>
                         <td ng-bind="summary.formatDaate(summary.FullDoc.essay.BREED_RPT_SUBMIT_DATE)"></td>
                     </tr>
-                    <tr>
+                    <tr ng-if="summary.FullDoc.essay.YREND_FILE_NAME">
                         <td>Year End Essay</td>
                         <td ng-click="summary.downloadCoress('yearendessay')" style="color:goldenrod">{{summary.FullDoc.essay.YREND_FILE_NAME}}</td>
                         <td ng-bind="summary.formatDaate(summary.FullDoc.essay.YREND_RPT_SUBMIT_DATE)"></td>
@@ -66,7 +66,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr ng-if="summary.corresFileName">
                         <td ng-if="summary.CorresSubmitDate.length > 0">{{summary.selectedMonth}}</td>
                         <td ng-if="summary.CorresSubmitDate.length == 0"></td>
                         <td ng-if="summary.CorresSubmitDate.length > 0">Yes</td>

@@ -93,17 +93,19 @@
                         vm.photo1 = "data:image/png;base64," + vm.CopprespondenceDetails[i].PHOTO;
                         vm.photo1Name = vm.CopprespondenceDetails[i].PHOTO_FILE_NAME;
                         vm.photo1Id = vm.CopprespondenceDetails[i].CLFS_DOC_ID;
+                        document.getElementById("photo1").value = "";
                     }
                     if (vm.CopprespondenceDetails[i].COMMENTS == "photo2") {
                         vm.photo2 = "data:image/png;base64," + vm.CopprespondenceDetails[i].PHOTO;
                         vm.photo2Name = vm.CopprespondenceDetails[i].PHOTO_FILE_NAME;
                         vm.photo2Id = vm.CopprespondenceDetails[i].CLFS_DOC_ID;
+                        document.getElementById("photo2").value = "";
                     }
                     if (vm.CopprespondenceDetails[i].COMMENTS == "photo3") {
                         vm.photo3 = "data:image/png;base64," + vm.CopprespondenceDetails[i].PHOTO;
                         vm.photo3name = vm.CopprespondenceDetails[i].PHOTO_FILE_NAME;
                         vm.photo3Id = vm.CopprespondenceDetails[i].CLFS_DOC_ID;
-                        console.log(vm.photo3name);
+                        document.getElementById("photo3").value = "";
                     }
                 }
             });
